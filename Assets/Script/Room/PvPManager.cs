@@ -17,7 +17,7 @@ public class PvPManager : MonoBehaviour
         StartPlayerTurn();
     }
 
-    private void StartPlayerTurn()
+    public void StartPlayerTurn()
     {
         Debug.Log("It's the player's turn. Choose an action (attack or block).");
     }
@@ -34,14 +34,14 @@ public class PvPManager : MonoBehaviour
             {
                 // Enemy must block
                 enemy.ChooseBlock(possibleBlockActions);
-                Debug.Log("Enemy will block player’s attack.");
+                //Debug.Log("Enemy will block player’s attack.");
             }
             // Player chooses a block
             else
             {
                 // Enemy must attack
                 enemy.ChooseAttack(possibleAttackActions);
-                Debug.Log("Enemy will attack while player blocks.");
+                //Debug.Log("Enemy will attack while player blocks.");
             }
 
             // Resolve the player's turn and switch to enemy's turn
@@ -61,12 +61,11 @@ public class PvPManager : MonoBehaviour
         }
     }
 
-    private void StartEnemyTurn()
+    public void StartEnemyTurn()
     {
         // Assume the enemy chooses either an attack or block
         if (!isPlayerTurn)
         {
-
             Debug.Log("Enemy's turn. Player must choose a block.");
 
             // Enemy always chooses an attack during its turn
@@ -78,7 +77,7 @@ public class PvPManager : MonoBehaviour
         }
     }
 
-   private void ResolveTurn()
+   public void ResolveTurn()
     {
         Debug.Log("Resolving turn...");
 
