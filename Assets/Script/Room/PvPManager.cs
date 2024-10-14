@@ -1,9 +1,14 @@
 using UnityEngine;
+using UnityEngine.UI;
+using System.Collections;
 
 public class PvPManager : MonoBehaviour
 {
     public PlayerSide player;
     public EnemySide enemy;
+
+    public Text whoStartsText;  // UI Text to show who starts
+    public GameObject wheelUI;  // The UI element for the wheel that will "spin"
 
     public ActionType[] possibleAttackActions; // List of possible actions for the enemy to choose from
     public ActionType[] possibleBlockActions;   // Possible blocks (normal, special)
@@ -14,12 +19,52 @@ public class PvPManager : MonoBehaviour
 
     public void Start()
     {
-        StartPlayerTurn();
+        StartCoroutine(SpinToDecideWhoStarts());  // Spin to decide who starts first
+        //StartPlayerTurn();
+    }
+
+    IEnumerator SpinToDecideWhoStarts()
+    {
+        // Activate the wheel UI
+        wheelUI.SetActive(true);
+        
+        // Simulate the wheel spinning for 2 seconds
+        float spinTime = 2f;
+        float elapsedTime = 0f;
+
+        while (elapsedTime < spinTime)
+        {
+            // This could be some animation or text that changes quickly
+            whoStartsText.text = (Random.Range(0, 2) == 0) ? "Player" : "Enemy";
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        // Randomly decide who will start
+        bool playerStarts = Random.Range(0, 2) == 0;
+
+        // Display who starts and wait for a moment
+        if (playerStarts)
+        {
+            whoStartsText.text = "Player starts!";
+            yield return new WaitForSeconds(1f);
+            wheelUI.SetActive(false);  // Hide the wheel
+            StartPlayerTurn();  // Start the player's turn
+        }
+        else
+        {
+            whoStartsText.text = "Enemy starts!";
+            yield return new WaitForSeconds(1f);
+            wheelUI.SetActive(false);  // Hide the wheel
+            StartEnemyTurn();  // Start the enemy's turn
+        }
     }
 
     public void StartPlayerTurn()
     {
+        isPlayerTurn = true;
         Debug.Log("It's the player's turn. Choose an action (attack or block).");
+        whoStartsText.text = "Player's Turn!";  // Show this in the UI as well
     }
 
     public void PlayerSelectAction(ActionType action)
@@ -63,7 +108,15 @@ public class PvPManager : MonoBehaviour
 
     public void StartEnemyTurn()
     {
-        // Assume the enemy chooses either an attack or block
+        isPlayerTurn = false;
+        Debug.Log("It's the enemy's turn. Player must choose a block.");
+        whoStartsText.text = "Enemy's Turn!";  // Show this in the UI as well
+        enemy.ChooseAttack(possibleAttackActions);
+        Debug.Log("Enemy selected: " + enemy.selectedAction.actionName);
+        waitingForPlayerBlock = true;
+        Debug.Log("Waiting for player to select a block action...");
+        
+        /*
         if (!isPlayerTurn)
         {
             Debug.Log("Enemy's turn. Player must choose a block.");
@@ -74,7 +127,7 @@ public class PvPManager : MonoBehaviour
             // Now we wait for the player to choose a block action
             waitingForPlayerBlock = true;
             Debug.Log("Waiting for player to select a block action...");
-        }
+        }*/
     }
 
    public void ResolveTurn()
