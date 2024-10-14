@@ -26,19 +26,41 @@ public class PlayerMovement : MonoBehaviour
 
     public IEnumerator MovePlayer(int steps)
     {
-        for (int i = 0; i < steps; i++)
+        // ตรวจสอบว่าต้องเดินถอยหลังหรือไม่
+        if (steps < 0)
         {
-            if (currentTileIndex < tiles.Length - 1)
+            steps = Mathf.Abs(steps); // เปลี่ยนให้เป็นบวก
+            for (int i = 0; i < steps; i++)
             {
-                currentTileIndex++; // ไปยังช่องถัดไป
-                yield return StartCoroutine(MoveToTile(currentTileIndex)); // เคลื่อนที่ไปยังช่องนั้น
+                if (currentTileIndex > 0) // ตรวจสอบว่าไม่ออกนอกขอบเขต
+                {
+                    currentTileIndex--; // ถอยหลัง
+                    yield return StartCoroutine(MoveToTile(currentTileIndex)); // เคลื่อนที่ไปยังช่องนั้น
+                }
+                else
+                {
+                    break; // หยุดถ้าถึงช่องแรก
+                }
             }
-            else
+        }
+        else
+        {
+            for (int i = 0; i < steps; i++)
             {
-                break; // หยุดถ้าถึงช่องสุดท้าย
+                if (currentTileIndex < tiles.Length - 1)
+                {
+                    currentTileIndex++; // ไปยังช่องถัดไป
+                    yield return StartCoroutine(MoveToTile(currentTileIndex)); // เคลื่อนที่ไปยังช่องนั้น
+                }
+                else
+                {
+                    break; // หยุดถ้าถึงช่องสุดท้าย
+                }
             }
         }
     }
+
+
 
     private IEnumerator MoveToTile(int tileIndex)
     {
