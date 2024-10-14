@@ -7,6 +7,23 @@ public class PlayerMovement : MonoBehaviour
     public Transform[] tiles; // ช่องต่าง ๆ ที่ผู้เล่นสามารถเดินไปได้
     private int currentTileIndex = 0; // ช่องปัจจุบันที่ผู้เล่นอยู่
 
+    public GameObject leftAppearance; // รูปร่างเมื่อเคลื่อนที่ไปทางซ้าย
+    public GameObject rightAppearance; // รูปร่างเมื่อเคลื่อนที่ไปทางขวา
+    public GameObject upAppearance; // รูปร่างเมื่อเคลื่อนที่ขึ้น
+    public GameObject downAppearance; // รูปร่างเมื่อเคลื่อนที่ลง
+
+    private void UpdateAppearance(GameObject newAppearance)
+    {
+        // ปิดการแสดงผลของรูปร่างทั้งหมด
+        leftAppearance.SetActive(false);
+        rightAppearance.SetActive(false);
+        upAppearance.SetActive(false);
+        downAppearance.SetActive(false);
+
+        // เปิดการแสดงผลของรูปร่างใหม่
+        newAppearance.SetActive(true);
+    }
+
     public IEnumerator MovePlayer(int steps)
     {
         for (int i = 0; i < steps; i++)
@@ -28,23 +45,27 @@ public class PlayerMovement : MonoBehaviour
         Vector3 startPosition = transform.position; // ตำแหน่งเริ่มต้นก่อนเคลื่อนที่
         Vector3 targetPosition = tiles[tileIndex].position; // ตำแหน่งเป้าหมาย
 
-        // ตรวจสอบว่าผู้เล่นเคลื่อนที่ตามแนวแกน X หรือ Y และแสดงทิศทาง + หรือ -
+        // ตรวจสอบทิศทางและเปลี่ยนรูปร่างของผู้เล่น
         if (targetPosition.x > startPosition.x)
         {
             Debug.Log("Moving along +X axis");
+            UpdateAppearance(rightAppearance);
         }
         else if (targetPosition.x < startPosition.x)
         {
             Debug.Log("Moving along -X axis");
+            UpdateAppearance(leftAppearance);
         }
 
         if (targetPosition.y > startPosition.y)
         {
             Debug.Log("Moving along +Y axis");
+            UpdateAppearance(upAppearance);
         }
         else if (targetPosition.y < startPosition.y)
         {
             Debug.Log("Moving along -Y axis");
+            UpdateAppearance(downAppearance);
         }
 
         // การเคลื่อนที่
