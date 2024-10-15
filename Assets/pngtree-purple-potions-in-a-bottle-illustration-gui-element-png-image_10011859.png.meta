@@ -183,7 +183,9 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      pngtree-purple-potions-in-a-bottle-illustration-gui-element-png-image_10011859_0: -4145826981763151675
+      pngtree-purple-potions-in-a-bottle-illustration-gui-element-png-image_10011859_1: 2572256892497294292
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
