@@ -27,9 +27,9 @@ public class PvPManager : MonoBehaviour
         //StartPlayerTurn();
     }
 
-    private void UpdateHPUI()
+    public void UpdateHPUI()
     {
-        playerHPText.text = "Player HP: " + player.health;
+        playerHPText.text = "Player HP: " + player.currentHp;
         enemyHPText.text = "Enemy HP: " + enemy.health;
     }
 
@@ -37,7 +37,6 @@ public class PvPManager : MonoBehaviour
     {
         // Activate the wheel UI
         wheelUI.SetActive(true);
-        
         // Simulate the wheel spinning for 2 seconds
         float spinTime = 2f;
         float elapsedTime = 0f;
@@ -84,17 +83,13 @@ public class PvPManager : MonoBehaviour
             player.SelectAction(action);
             Debug.Log("Player selected: " + action.actionName);
 
-            // Player chooses an attack
             if (action.isAttack)
             {
-                // Enemy must block
                 enemy.ChooseBlock(possibleBlockActions);
                 //Debug.Log("Enemy will block player’s attack.");
             }
-            // Player chooses a block
             else
             {
-                // Enemy must attack
                 enemy.ChooseAttack(possibleAttackActions);
                 //Debug.Log("Enemy will attack while player blocks.");
             }
@@ -124,20 +119,8 @@ public class PvPManager : MonoBehaviour
         enemy.ChooseAttack(possibleAttackActions);
         Debug.Log("Enemy selected: " + enemy.selectedAction.actionName);
         waitingForPlayerBlock = true;
-        Debug.Log("Waiting for player to select a block action...");
+        //Debug.Log("Waiting for player to select a block action...");
         
-        /*
-        if (!isPlayerTurn)
-        {
-            Debug.Log("Enemy's turn. Player must choose a block.");
-
-            // Enemy always chooses an attack during its turn
-            enemy.ChooseAttack(possibleAttackActions);
-
-            // Now we wait for the player to choose a block action
-            waitingForPlayerBlock = true;
-            Debug.Log("Waiting for player to select a block action...");
-        }*/
     }
 
    public void ResolveTurn()
@@ -191,18 +174,7 @@ public class PvPManager : MonoBehaviour
                 Debug.Log("Enemy's normal attack bypasses player's special block. Player takes damage.");
             }
         }
+
+        UpdateHPUI();
     }
-
-    /*// Example of running a game turn
-    public void RunTurn()
-    {
-        // Player selects an action (this could come from UI)
-        player.SelectAction(possibleActions[0]);  // Assume player selects the first action
-
-        // Enemy randomly selects an action
-        enemy.SelectRandomAction(possibleActions);
-
-        // Resolve the turn
-        ResolveTurn();
-    }*/
 }

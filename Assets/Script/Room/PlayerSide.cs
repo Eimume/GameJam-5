@@ -11,6 +11,7 @@ public class PlayerSide : MonoBehaviour
     public ItemType currentItem;  // ไอเท็มที่ผู้เล่นกำลังจะใช้ (เช่น Potion)
     public Text playerHPText;  // อ้างอิงถึง Text UI สำหรับแสดง HP ของผู้เล่น
     public GameObject potionUI;  // หน้าต่าง UI ของ Potion
+    public PvPManager pvpManager;
     
     public ActionType selectedAction;  // The action selected by the player
 
@@ -24,21 +25,25 @@ public class PlayerSide : MonoBehaviour
     // Update the player's HP in the UI
     private void UpdatePlayerHPUI()
     {
-        playerHPText.text = "Player HP: " + health.ToString();
+        if (playerHPText != null)
+        {
+            playerHPText.text = "Player HP: " + currentHp.ToString();
+        }
     }
 
     public void SelectAction(ActionType action)
     {
         selectedAction = action;
-        //Debug.Log("Player selected: " + selectedAction.actionName);
+        Debug.Log("Player selected: " + selectedAction.actionName);
     }
 
     public void TakeDamage(int damage)
     {
-        health -= damage;
-        if (health < 0) health = 0;  // ป้องกันไม่ให้ HP ต่ำกว่า 0
-        Debug.Log("Player takes " + damage + " damage. Health: " + health);
+        currentHp -= damage;
+        if (currentHp < 0) currentHp = 0;
+        Debug.Log("Player takes " + damage + " damage. Health: " + currentHp);
         UpdatePlayerHPUI();
+        pvpManager.UpdateHPUI();  // Update the UI in PvPManager
     }
 
     public void Heal(int healAmount)
@@ -56,26 +61,12 @@ public class PlayerSide : MonoBehaviour
 
         Debug.Log("Player Health after healing: " + currentHp);
         UpdatePlayerHPUI();  // อัปเดตค่า HP ใน UI หลังจากฟื้นฟู
+        pvpManager.UpdateHPUI();
     }
+
+    /*
     public void UseItemFromInventory(ItemType item)
     {
-        /*
-        if (item != null && health < 100)
-        {
-            Debug.Log($"Used {item.itemName}, increased HP by {item.BuffEffect}.");
-            health += item.BuffEffect;  // เพิ่ม HP ตาม BuffEffect ของไอเท็ม
-            if (health > 100)
-            {
-                health = 100;  // ไม่ให้ค่า HP เกิน 100
-            }
-            
-            UpdatePlayerHPUI();  // อัปเดต UI หลังจากใช้ไอเท็ม
-            potionUI.SetActive(false);  // ปิดหน้าต่าง Potion หลังใช้งาน
-        }
-        else
-        {
-            Debug.Log("Item is null or player health is already full.");
-        }*/
 
         if (item != null && currentHp < health)
         {
@@ -96,5 +87,5 @@ public class PlayerSide : MonoBehaviour
     public void NoUsePotion()
     {
         potionUI.SetActive(false);  // ปิดหน้าต่าง UI ของ Potion โดยไม่ทำอะไร
-    }
+    }*/
 }

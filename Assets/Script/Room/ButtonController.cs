@@ -6,24 +6,25 @@ public class ButtonController : MonoBehaviour
     public GameObject inventoryButton;
     public GameObject actionButton;
 
-    // Exit button, initially hidden
     public GameObject exitButton;
 
-    // Action-specific buttons (e.g., Attack, Defend, etc.)
     public GameObject[] actionOptions;
+    public GameObject[] inventoryOptions;
 
-    // Reference to the Inventory UI (for storing items)
-    public GameObject inventoryUI;
+    public PlayerSide playerSide;
 
     private void Start()
     {
         // Start by showing only Inventory and Action buttons, hide the rest
         inventoryButton.SetActive(true);
         actionButton.SetActive(true);
-
-        // Hide Exit, Inventory UI, and Action options at the start
         exitButton.SetActive(false);
-        inventoryUI.SetActive(false);
+   
+
+        foreach (GameObject button in inventoryOptions)
+        {
+            button.SetActive(false);
+        }
 
         foreach (GameObject button in actionOptions)
         {
@@ -37,9 +38,12 @@ public class ButtonController : MonoBehaviour
         // Show the Inventory UI, hide other main buttons
         inventoryButton.SetActive(false);
         actionButton.SetActive(false);
-        inventoryUI.SetActive(true);
 
-        // Show the Exit button
+        foreach (GameObject button in inventoryOptions)
+        {
+            button.SetActive(true);
+        }
+
         exitButton.SetActive(true);
     }
 
@@ -62,9 +66,12 @@ public class ButtonController : MonoBehaviour
     // Called when the Exit button is clicked
     public void OnExitButtonClick()
     {
-        // Hide all secondary UI (Inventory and Action options)
-        inventoryUI.SetActive(false);
         foreach (GameObject button in actionOptions)
+        {
+            button.SetActive(false);
+        }
+
+        foreach (GameObject button in inventoryOptions)
         {
             button.SetActive(false);
         }
@@ -72,8 +79,13 @@ public class ButtonController : MonoBehaviour
         // Show the main buttons again
         inventoryButton.SetActive(true);
         actionButton.SetActive(true);
-
-        // Hide the Exit button
         exitButton.SetActive(false);
+    }
+    
+    public void OnHealingPotionClick(ItemType item)
+    {
+        Debug.Log("Healing Potion selected: " + item.itemName);
+        playerSide.Heal(item.BuffEffect);  // เรียกฟังก์ชัน Heal ใน PlayerSide โดยส่งค่าการฟื้นฟู
+        OnExitButtonClick();  // ปิดเมนูหลังจากใช้ไอเท็ม
     }
 }

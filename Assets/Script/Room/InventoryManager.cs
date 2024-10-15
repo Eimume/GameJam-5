@@ -51,7 +51,7 @@ public class InventoryManager : MonoBehaviour
         // Check if it's a healing item like a potion
         if (item != null && item.BuffEffect > 0)
         {
-            player.UseItemFromInventory(item);  // Call PlayerSide to use the item
+            //player.UseItemFromInventory(item);  // Call PlayerSide to use the item
             items.Remove(item);  // Remove the item from the inventory after use
             UpdateInventoryUI();  // Refresh the inventory UI after the item is used
         }
