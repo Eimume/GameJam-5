@@ -14,6 +14,16 @@ public class PlayerMovement : MonoBehaviour
 
     private bool isMoving = false;
 
+    void Start()
+    {
+        // ซ่อนโมเดลทั้งหมดตั้งแต่เริ่มต้น
+        downModel.SetActive(false);
+        leftModel.SetActive(false);
+        rightModel.SetActive(false);
+        // โดยให้โมเดลขึ้นเป็นโมเดลเริ่มต้นหรือสามารถปรับตามที่ต้องการได้
+        upModel.SetActive(true);
+    }
+
     public IEnumerator MovePlayer(int steps)
     {
         isMoving = true;
