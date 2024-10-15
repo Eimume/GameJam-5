@@ -1,189 +1,201 @@
-using UnityEngine;
-using UnityEngine.UI;
 using System.Collections;
+using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float moveSpeed = 5f; // ความเร็วในการเคลื่อนที่
-    public Transform[] tiles; // ท่อต่างๆที่ตัวละครสามารถเดินไปได้
-    private int currentTileIndex = 0; // ท่อตัวละครปัจจุบัน
+    public Transform[] tiles; // Array ของตำแหน่งของแต่ละช่องในเกม
+    public int currentTileIndex = 0; // ตำแหน่งเริ่มต้นของผู้เล่น
+    public float moveSpeed = 2f; // ความเร็วในการเคลื่อนที่ของผู้เล่น
 
-    public GameObject leftAppearance; // การแสดงผลทิศทางซ้าย
-    public GameObject rightAppearance; // การแสดงผลทิศทางขวา
-    public GameObject upAppearance; // การแสดงผลทิศทางขึ้น
-    public GameObject downAppearance; // การแสดงผลทิศทางลง
+    public GameObject upModel; // โมเดลสำหรับการเคลื่อนที่ขึ้น
+    public GameObject downModel; // โมเดลสำหรับการเคลื่อนที่ลง
+    public GameObject leftModel; // โมเดลสำหรับการเคลื่อนที่ซ้าย
+    public GameObject rightModel; // โมเดลสำหรับการเคลื่อนที่ขวา
 
-    public int HPplayer = 100; // ค่า HP ของผู้เล่น
-    public Text Hp; // UI แสดงค่า HP
-    public GameObject potioon; // Potion UI
-    public GameObject Potoin; // ปุ่มใช้ Potion
-    public int BuffPotion = 20; // ค่าเพิ่ม HP เมื่อใช้ Potion
+    private bool isMoving = false;
 
-    private Vector3 lastPosition; // ตำแหน่งล่าสุดของผู้เล่น
-    private bool hasStoppedMoving = false; // เช็คว่าผู้เล่นหยุดเคลื่อนที่แล้วหรือไม่
+    // อ้างอิงไปยังกล้องต่างๆ
+    public Camera gameCamera; // กล้องเกมหลัก
+    public Camera shopCamera; // กล้องร้านค้า
 
-    // ตัวแปรใหม่ที่จะใช้ในการตรวจสอบว่า Player อยู่ในบล็อกที่มี Tag "DamageBlock"
-    private bool isInDamageBlock = false;
+    // อ้างอิงไปยัง UI ร้านค้า
+    public GameObject shopUI;
 
-    private void Start()
+    void Start()
     {
-        lastPosition = transform.position; // ตั้งค่าตำแหน่งเริ่มต้น
-    }
+        // ซ่อนโมเดลทั้งหมดตั้งแต่เริ่มต้น
+        downModel.SetActive(false);
+        leftModel.SetActive(false);
+        rightModel.SetActive(false);
+        upModel.SetActive(true);
 
-    private void UpdateAppearance(GameObject newAppearance)
-    {
-        // ปิดการแสดงผลทุกทิศทาง
-        leftAppearance.SetActive(false);
-        rightAppearance.SetActive(false);
-        upAppearance.SetActive(false);
-        downAppearance.SetActive(false);
-
-        // เปิดการแสดงผลทิศทางใหม่
-        newAppearance.SetActive(true);
+        // ตรวจสอบว่ากล้องและ UI ถูกตั้งค่าไว้
+        if (gameCamera != null)
+            gameCamera.gameObject.SetActive(true);
+        if (shopCamera != null)
+            shopCamera.gameObject.SetActive(false);
+        if (shopUI != null)
+            shopUI.SetActive(false);
     }
 
     public IEnumerator MovePlayer(int steps)
     {
-        for (int i = 0; i < steps; i++)
+        isMoving = true;
+
+        while (steps > 0)
         {
-            if (currentTileIndex < tiles.Length - 1)
+            if (currentTileIndex + 1 >= tiles.Length)
             {
-                currentTileIndex++; // ไปที่ท่อถัดไป
-                yield return StartCoroutine(MoveToTile(currentTileIndex)); // ย้ายตัวละครไปที่ท่อถัดไป
+                // ป้องกันไม่ให้เดินเกินขอบเขตของ tiles
+                break;
             }
-            else
+
+            Vector3 targetPosition = tiles[currentTileIndex + 1].position;
+
+            // เปลี่ยนโมเดลตามทิศทางการเคลื่อนที่ก่อนเริ่มเดิน
+            ChangeModel();
+
+            // เคลื่อนที่ไปที่ช่องถัดไปทีละนิด
+            while (Vector3.Distance(transform.position, targetPosition) > 0.01f)
             {
-                break; // หยุดหากไม่มีท่อให้เดิน
+                transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
+                yield return null;
             }
+
+            currentTileIndex++; // เพิ่มตำแหน่งทีละ 1
+
+            steps--;
+            yield return new WaitForSeconds(0.2f); // หน่วงเวลาเล็กน้อยเพื่อให้ดูการเคลื่อนที่ชัดเจน
         }
+
+        // ตรวจสอบช่องพิเศษหลังจากการเคลื่อนที่เสร็จสิ้น
+        CheckSpecialTile();
+
+        isMoving = false;
     }
 
-    private IEnumerator MoveToTile(int tileIndex)
+    public IEnumerator MoveBackward(int steps)
     {
-        Vector3 startPosition = transform.position; // ตำแหน่งเริ่มต้น
-        Vector3 targetPosition = tiles[tileIndex].position; // ตำแหน่งท่อที่ต้องการไป
-
-        // ตรวจสอบทิศทางและอัพเดตการแสดงผล
-        if (targetPosition.x > startPosition.x)
+        while (steps > 0)
         {
-            Debug.Log("Moving along +X axis");
-            UpdateAppearance(rightAppearance);
-        }
-        else if (targetPosition.x < startPosition.x)
-        {
-            Debug.Log("Moving along -X axis");
-            UpdateAppearance(leftAppearance);
-        }
-
-        if (targetPosition.y > startPosition.y)
-        {
-            Debug.Log("Moving along +Y axis");
-            UpdateAppearance(upAppearance);
-        }
-        else if (targetPosition.y < startPosition.y)
-        {
-            Debug.Log("Moving along -Y axis");
-            UpdateAppearance(downAppearance);
-        }
-
-        // เคลื่อนที่ตัวละครไปยังท่อที่กำหนด
-        while (Vector3.Distance(transform.position, targetPosition) > 0.1f)
-        {
-            transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
-            yield return null; // รอจนกว่าจะเสร็จ
-        }
-
-        // ปรับตำแหน่งตัวละครให้ตรงกับตำแหน่งท่อ
-        transform.position = new Vector3(Mathf.Round(transform.position.x), Mathf.Round(transform.position.y), transform.position.z);
-    }
-
-    private int RollDice()
-    {
-        return Random.Range(1, 7); // ทอยลูกเต๋า (1-6)
-    }
-
-    // ฟังก์ชันที่ลดพลังชีวิตของตัวละคร
-    public void TakeDamage(int damage)
-    {
-        HPplayer -= damage;
-        Debug.Log("Player's HP: " + HPplayer);
-
-        if (HPplayer <= 0)
-        {
-            Debug.Log("Player is dead!");
-            // คุณสามารถทำการปลดล็อกหรือให้ Game Over ที่นี่
-        }
-    }
-
-    // ฟังก์ชันที่ตรวจสอบเมื่อ Player ชนกับบล็อกที่มี Tag เป็น "DamageBlock"
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("DamageBlock")) // ตรวจสอบว่าเป็นบล็อกที่มี Tag "DamageBlock"
-        {
-            isInDamageBlock = true; // ผู้เล่นอยู่ในบล็อก
-        }
-    }
-
-    // ฟังก์ชันที่ตรวจสอบเมื่อ Player ออกจากบล็อก
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.CompareTag("DamageBlock")) // ตรวจสอบว่าเป็นบล็อกที่มี Tag "DamageBlock"
-        {
-            isInDamageBlock = false; // ผู้เล่นออกจากบล็อก
-        }
-    }
-
-    // การอัพเดต UI ของ HP
-    void Update()
-    {
-        Hp.text = $"HP: {HPplayer}";
-        if (HPplayer > 100)
-        {
-            HPplayer = 100;
-        }
-        if (HPplayer < 0)
-        {
-            HPplayer = 0;
-        }
-
-        // เช็คว่าผู้เล่นหยุดเคลื่อนที่
-        if (transform.position == lastPosition)
-        {
-            if (!hasStoppedMoving)
+            if (currentTileIndex - 1 < 0)
             {
-                // ถ้าผู้เล่นหยุดเคลื่อนที่และยังไม่เคยลดเลือด
-                if (isInDamageBlock)
+                // ป้องกันไม่ให้ถอยกลับไปน้อยกว่า 0
+                break;
+            }
+
+            Vector3 targetPosition = tiles[currentTileIndex - 1].position;
+
+            // เปลี่ยนโมเดลตามทิศทางการเคลื่อนที่ก่อนเริ่มเดิน
+            ChangeModel();
+
+            // เคลื่อนที่กลับไปที่ช่องถัดไปทีละนิด
+            while (Vector3.Distance(transform.position, targetPosition) > 0.01f)
+            {
+                transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
+                yield return null;
+            }
+
+            currentTileIndex--; // ลดตำแหน่งทีละ 1
+            steps--;
+            yield return new WaitForSeconds(0.2f); // หน่วงเวลาเล็กน้อยเพื่อให้ดูการถอยกลับชัดเจน
+        }
+
+        // ตรวจสอบช่องพิเศษหลังจากการถอยกลับเสร็จสิ้น
+        CheckSpecialTile();
+
+        isMoving = false;
+    }
+
+    private void ChangeModel()
+    {
+        Vector3 movementDirection = Vector3.zero;
+        if (currentTileIndex + 1 < tiles.Length)
+        {
+            movementDirection = tiles[currentTileIndex + 1].position - (currentTileIndex > 0 ? tiles[currentTileIndex].position : transform.position);
+        }
+
+        // ปิดโมเดลทั้งหมดก่อน
+        upModel.SetActive(false);
+        downModel.SetActive(false);
+        leftModel.SetActive(false);
+        rightModel.SetActive(false);
+
+        // ตรวจสอบทิศทางการเคลื่อนที่
+        if (movementDirection.y > 0)
+        {
+            upModel.SetActive(true); // เคลื่อนที่ขึ้น
+        }
+        else if (movementDirection.y < 0)
+        {
+            downModel.SetActive(true); // เคลื่อนที่ลง
+        }
+        else if (movementDirection.x > 0)
+        {
+            rightModel.SetActive(true); // เคลื่อนที่ขวา
+        }
+        else if (movementDirection.x < 0)
+        {
+            leftModel.SetActive(true); // เคลื่อนที่ซ้าย
+        }
+    }
+
+    private void CheckSpecialTile()
+    {
+        SpecialTile specialTile = tiles[currentTileIndex].GetComponent<SpecialTile>();
+        if (specialTile != null)
+        {
+            if (specialTile.isMoveBackwardTile)
+            {
+                StartCoroutine(MoveBackward(specialTile.moveBackwardSteps));
+            }
+            else if (specialTile.isDamageTile)
+            {
+                // ลดเลือดผู้เล่น
+                PlayerHealth playerHealth = GetComponent<PlayerHealth>();
+                if (playerHealth != null)
                 {
-                    TakeDamage(10); // ลดเลือด 10 เมื่อหยุดที่บล็อก
+                    playerHealth.TakeDamage(specialTile.damageAmount);
                 }
-                hasStoppedMoving = true; // ตั้งค่าสถานะว่าเลือดลดแล้ว
+            }
+            else if (specialTile.isShopTile)
+            {
+                // เปิดร้านค้า
+                OpenShop();
             }
         }
-        else
+    }
+
+    private void OpenShop()
+    {
+        if (gameCamera != null && shopCamera != null)
         {
-            // ถ้าผู้เล่นกำลังเคลื่อนที่, อัพเดตตำแหน่งล่าสุดและรีเซ็ตการหยุดเคลื่อนที่
-            lastPosition = transform.position;
-            hasStoppedMoving = false; // รีเซ็ตสถานะเมื่อเริ่มเคลื่อนที่ใหม่
+            gameCamera.gameObject.SetActive(false);
+            shopCamera.gameObject.SetActive(true);
         }
-    }
 
-    public void UsePotion() // เมื่อกดใช้จะเพิ่มบัพและ UI ทั้งหมดจะหายไป
-    {
-        if (HPplayer > 0 && HPplayer < 100)
+        if (shopUI != null)
         {
-            HPplayer += BuffPotion;
-            Potoin.SetActive(false);
-            potioon.SetActive(false);
+            shopUI.SetActive(true);
         }
+
+        // คุณสามารถเพิ่มฟังก์ชันอื่น ๆ ที่เกี่ยวข้องกับร้านค้าได้ที่นี่ เช่น การหยุดการเคลื่อนที่ หรือการแสดงข้อความ
+        Debug.Log("เปิดร้านค้า");
     }
 
-    public void NoUse() // ปิดหน้าต่าง
+    public void CloseShop()
     {
-        potioon.SetActive(false);
-    }
+        if (gameCamera != null && shopCamera != null)
+        {
+            shopCamera.gameObject.SetActive(false);
+            gameCamera.gameObject.SetActive(true);
+        }
 
-    public void OpenPotion()
-    {
-        potioon.SetActive(true);
+        if (shopUI != null)
+        {
+            shopUI.SetActive(false);
+        }
+
+        Debug.Log("ปิดร้านค้า");
     }
 }
