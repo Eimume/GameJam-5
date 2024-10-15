@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class PlayerHP : MonoBehaviour
 {
-    public int HPplayer;
+    public int HPplayer = 100;
     public int BuffPotion;
     public Text Hp;
     public GameObject potioon;
