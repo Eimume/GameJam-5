@@ -41,7 +41,7 @@ public class DiceRoller : MonoBehaviour
         }
 
         // เมื่ออนิเมชั่นจบ ให้แสดงผลลัพธ์สุดท้าย
-        diceResultText.text = "Result: " + finalResult.ToString();
+        diceResultText.text = "Result : " + finalResult.ToString();
 
         // ส่งค่าจำนวนก้าวที่ผู้เล่นต้องเดิน
         StartCoroutine(playerMovement.MovePlayer(finalResult)); // เรียกใช้งาน MovePlayer ผ่าน Coroutine

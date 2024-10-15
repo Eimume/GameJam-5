@@ -34,7 +34,7 @@ public class PlayerHealth : MonoBehaviour
     {
         if (healthText != null)
         {
-            healthText.text = "Health: " + currentHealth.ToString();
+            healthText.text = "Health : " + currentHealth.ToString();
         }
         else
         {
