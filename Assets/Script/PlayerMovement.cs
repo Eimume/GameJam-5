@@ -1,108 +1,118 @@
-using UnityEngine;
 using System.Collections;
+using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float moveSpeed = 5f; // ความเร็วในการเคลื่อนที่
-    public Transform[] tiles; // ช่องต่าง ๆ ที่ผู้เล่นสามารถเดินไปได้
-    private int currentTileIndex = 0; // ช่องปัจจุบันที่ผู้เล่นอยู่
+    public Transform[] tiles; // Array ของตำแหน่งของแต่ละช่องในเกม
+    public int currentTileIndex = 0; // ตำแหน่งเริ่มต้นของผู้เล่น
+    public float moveSpeed = 2f; // ความเร็วในการเคลื่อนที่ของผู้เล่น
 
-    public GameObject leftAppearance; // รูปร่างเมื่อเคลื่อนที่ไปทางซ้าย
-    public GameObject rightAppearance; // รูปร่างเมื่อเคลื่อนที่ไปทางขวา
-    public GameObject upAppearance; // รูปร่างเมื่อเคลื่อนที่ขึ้น
-    public GameObject downAppearance; // รูปร่างเมื่อเคลื่อนที่ลง
+    public GameObject upModel; // โมเดลสำหรับการเคลื่อนที่ขึ้น
+    public GameObject downModel; // โมเดลสำหรับการเคลื่อนที่ลง
+    public GameObject leftModel; // โมเดลสำหรับการเคลื่อนที่ซ้าย
+    public GameObject rightModel; // โมเดลสำหรับการเคลื่อนที่ขวา
 
-    private void UpdateAppearance(GameObject newAppearance)
-    {
-        // ปิดการแสดงผลของรูปร่างทั้งหมด
-        leftAppearance.SetActive(false);
-        rightAppearance.SetActive(false);
-        upAppearance.SetActive(false);
-        downAppearance.SetActive(false);
-
-        // เปิดการแสดงผลของรูปร่างใหม่
-        newAppearance.SetActive(true);
-    }
+    private bool isMoving = false;
 
     public IEnumerator MovePlayer(int steps)
     {
-        // ตรวจสอบว่าต้องเดินถอยหลังหรือไม่
-        if (steps < 0)
+        isMoving = true;
+
+        // เดินไปตามจำนวนที่ได้จากการทอยเต๋า
+        while (steps > 0)
         {
-            steps = Mathf.Abs(steps); // เปลี่ยนให้เป็นบวก
-            for (int i = 0; i < steps; i++)
+            Vector3 targetPosition = tiles[currentTileIndex + 1].position;
+
+            // เปลี่ยนโมเดลตามทิศทางการเคลื่อนที่ก่อนเริ่มเดิน
+            ChangeModel();
+
+            // เคลื่อนที่ไปที่ช่องถัดไปทีละนิด
+            while (Vector3.Distance(transform.position, targetPosition) > 0.01f)
             {
-                if (currentTileIndex > 0) // ตรวจสอบว่าไม่ออกนอกขอบเขต
-                {
-                    currentTileIndex--; // ถอยหลัง
-                    yield return StartCoroutine(MoveToTile(currentTileIndex)); // เคลื่อนที่ไปยังช่องนั้น
-                }
-                else
-                {
-                    break; // หยุดถ้าถึงช่องแรก
-                }
+                transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
+                yield return null;
             }
+
+            currentTileIndex++; // เพิ่มตำแหน่งทีละ 1
+
+            if (currentTileIndex >= tiles.Length - 1)
+            {
+                currentTileIndex = tiles.Length - 1; // ป้องกันไม่ให้เดินเกิน
+                break;
+            }
+
+            steps--;
+            yield return new WaitForSeconds(0.2f); // หน่วงเวลาเล็กน้อยเพื่อให้ดูการเคลื่อนที่ชัดเจน
+        }
+
+        // หลังจากเดินเสร็จแล้ว ตรวจสอบว่าช่องปัจจุบันเป็นช่องพิเศษหรือไม่
+        SpecialTile specialTile = tiles[currentTileIndex].GetComponent<SpecialTile>();
+        if (specialTile != null && specialTile.isMoveBackwardTile)
+        {
+            StartCoroutine(MoveBackward(specialTile.moveBackwardSteps)); // ถอยกลับตามจำนวนที่กำหนด
         }
         else
         {
-            for (int i = 0; i < steps; i++)
+            isMoving = false;
+        }
+    }
+
+    public IEnumerator MoveBackward(int steps)
+    {
+        while (steps > 0)
+        {
+            Vector3 targetPosition = tiles[currentTileIndex - 1].position;
+
+            // เปลี่ยนโมเดลตามทิศทางการเคลื่อนที่ก่อนเริ่มเดิน
+            ChangeModel();
+
+            // เคลื่อนที่กลับไปที่ช่องถัดไปทีละนิด
+            while (Vector3.Distance(transform.position, targetPosition) > 0.01f)
             {
-                if (currentTileIndex < tiles.Length - 1)
-                {
-                    currentTileIndex++; // ไปยังช่องถัดไป
-                    yield return StartCoroutine(MoveToTile(currentTileIndex)); // เคลื่อนที่ไปยังช่องนั้น
-                }
-                else
-                {
-                    break; // หยุดถ้าถึงช่องสุดท้าย
-                }
+                transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
+                yield return null;
             }
+
+            currentTileIndex--; // ลดตำแหน่งทีละ 1
+            if (currentTileIndex < 0)
+            {
+                currentTileIndex = 0; // ป้องกันไม่ให้ถอยกลับไปน้อยกว่า 0
+                break;
+            }
+
+            steps--;
+            yield return new WaitForSeconds(0.2f); // หน่วงเวลาเล็กน้อยเพื่อให้ดูการถอยกลับชัดเจน
         }
+
+        isMoving = false;
     }
 
-
-
-    private IEnumerator MoveToTile(int tileIndex)
+    private void ChangeModel()
     {
-        Vector3 startPosition = transform.position; // ตำแหน่งเริ่มต้นก่อนเคลื่อนที่
-        Vector3 targetPosition = tiles[tileIndex].position; // ตำแหน่งเป้าหมาย
+        Vector3 movementDirection = tiles[currentTileIndex + 1].position - (currentTileIndex > 0 ? tiles[currentTileIndex].position : transform.position);
 
-        // ตรวจสอบทิศทางและเปลี่ยนรูปร่างของผู้เล่น
-        if (targetPosition.x > startPosition.x)
-        {
-            Debug.Log("Moving along +X axis");
-            UpdateAppearance(rightAppearance);
-        }
-        else if (targetPosition.x < startPosition.x)
-        {
-            Debug.Log("Moving along -X axis");
-            UpdateAppearance(leftAppearance);
-        }
+        // ปิดโมเดลทั้งหมดก่อน
+        upModel.SetActive(false);
+        downModel.SetActive(false);
+        leftModel.SetActive(false);
+        rightModel.SetActive(false);
 
-        if (targetPosition.y > startPosition.y)
+        // ตรวจสอบทิศทางการเคลื่อนที่
+        if (movementDirection.y > 0)
         {
-            Debug.Log("Moving along +Y axis");
-            UpdateAppearance(upAppearance);
+            upModel.SetActive(true); // เคลื่อนที่ขึ้น
         }
-        else if (targetPosition.y < startPosition.y)
+        else if (movementDirection.y < 0)
         {
-            Debug.Log("Moving along -Y axis");
-            UpdateAppearance(downAppearance);
+            downModel.SetActive(true); // เคลื่อนที่ลง
         }
-
-        // การเคลื่อนที่
-        while (Vector3.Distance(transform.position, targetPosition) > 0.1f)
+        else if (movementDirection.x > 0)
         {
-            transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
-            yield return null; // รอเฟรมถัดไป
+            rightModel.SetActive(true); // เคลื่อนที่ขวา
         }
-
-        // ปรับตำแหน่งให้เป็นจำนวนเต็ม
-        transform.position = new Vector3(Mathf.Round(transform.position.x), Mathf.Round(transform.position.y), transform.position.z);
-    }
-
-    private int RollDice()
-    {
-        return Random.Range(1, 7); // ทอยลูกเต๋าและคืนค่าผลลัพธ์ (1-6)
+        else if (movementDirection.x < 0)
+        {
+            leftModel.SetActive(true); // เคลื่อนที่ซ้าย
+        }
     }
 }
