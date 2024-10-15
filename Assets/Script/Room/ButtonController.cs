@@ -2,46 +2,78 @@ using UnityEngine;
 
 public class ButtonController : MonoBehaviour
 {
-    // Assign these in the Inspector
-    public GameObject[] optionButtons;
 
-    public GameObject mainButton;
+    public GameObject inventoryButton;
+    public GameObject actionButton;
 
+    // Exit button, initially hidden
     public GameObject exitButton;
+
+    // Action-specific buttons (e.g., Attack, Defend, etc.)
+    public GameObject[] actionOptions;
+
+    // Reference to the Inventory UI (for storing items)
+    public GameObject inventoryUI;
 
     private void Start()
     {
-        // Set all option buttons to inactive at the start
-        foreach (GameObject button in optionButtons)
-        {
-            button.SetActive(false);  // Make sure all option buttons are hidden initially
-        }
+        // Start by showing only Inventory and Action buttons, hide the rest
+        inventoryButton.SetActive(true);
+        actionButton.SetActive(true);
 
+        // Hide Exit, Inventory UI, and Action options at the start
         exitButton.SetActive(false);
-    }
+        inventoryUI.SetActive(false);
 
-    public void OnMainButtonClick()
-    {
-        // Activate the option buttons when the main button is clicked
-        foreach (GameObject button in optionButtons)
+        foreach (GameObject button in actionOptions)
         {
-            button.SetActive(true);  // Make option buttons visible
+            button.SetActive(false);
         }
-        exitButton.SetActive(true);
-
-        mainButton.SetActive(false);
     }
 
+    // Called when the Inventory button is clicked
+    public void OnInventoryButtonClick()
+    {
+        // Show the Inventory UI, hide other main buttons
+        inventoryButton.SetActive(false);
+        actionButton.SetActive(false);
+        inventoryUI.SetActive(true);
+
+        // Show the Exit button
+        exitButton.SetActive(true);
+    }
+
+    // Called when the Action button is clicked
+    public void OnActionButtonClick()
+    {
+        // Show the Action-specific buttons, hide the main buttons
+        inventoryButton.SetActive(false);
+        actionButton.SetActive(false);
+
+        foreach (GameObject button in actionOptions)
+        {
+            button.SetActive(true);
+        }
+
+        // Show the Exit button
+        exitButton.SetActive(true);
+    }
+
+    // Called when the Exit button is clicked
     public void OnExitButtonClick()
     {
-        // Deactivate all option buttons and exit button
-        foreach (GameObject button in optionButtons)
+        // Hide all secondary UI (Inventory and Action options)
+        inventoryUI.SetActive(false);
+        foreach (GameObject button in actionOptions)
         {
-            button.SetActive(false);  // Hide option buttons
+            button.SetActive(false);
         }
-        exitButton.SetActive(false); // Hide the exit button
 
-        // Activate the main button again
-        mainButton.SetActive(true);
+        // Show the main buttons again
+        inventoryButton.SetActive(true);
+        actionButton.SetActive(true);
+
+        // Hide the Exit button
+        exitButton.SetActive(false);
     }
 }
