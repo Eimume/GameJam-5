@@ -38,6 +38,7 @@ public class EnemySide : MonoBehaviour
     public void TakeDamage(int damage)
     {
         health -= damage;
+        if (health < 0) health = 0;
         Debug.Log("Enemy takes " + damage + " damage. Health: " + health);
         UpdateEnemyHPUI();
     }
