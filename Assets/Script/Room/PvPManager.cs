@@ -7,6 +7,9 @@ public class PvPManager : MonoBehaviour
     public PlayerSide player;
     public EnemySide enemy;
 
+    public Text playerHPText;  // Text UI สำหรับแสดง HP ของผู้เล่น
+    public Text enemyHPText;   // Text UI สำหรับแสดง HP ของศัตรู
+
     public Text whoStartsText;  // UI Text to show who starts
     public GameObject wheelUI;  // The UI element for the wheel that will "spin"
 
@@ -19,8 +22,15 @@ public class PvPManager : MonoBehaviour
 
     public void Start()
     {
+        UpdateHPUI();  // อัปเดต UI เมื่อเกมเริ่มต้น
         StartCoroutine(SpinToDecideWhoStarts());  // Spin to decide who starts first
         //StartPlayerTurn();
+    }
+
+    private void UpdateHPUI()
+    {
+        playerHPText.text = "Player HP: " + player.health;
+        enemyHPText.text = "Enemy HP: " + enemy.health;
     }
 
     IEnumerator SpinToDecideWhoStarts()
