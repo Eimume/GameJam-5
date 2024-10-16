@@ -27,20 +27,6 @@ public class SceneController : MonoBehaviour
         }
     }
 
-    private void Start()
-    {
-        //PlayerData.instance?.HideBattleMessage();
-        // Find the DiceRoller script in the scene
-        /*if (BattleMessage != null)
-        {
-            BattleMessage.SetActive(false);
-        }
-
-        if (battleNotificationText != null)
-        {
-            battleNotificationText.gameObject.SetActive(false); // Hide the notification text initially
-        }*/
-    }
     public void SavePlayerState(Vector3 position, int tileIndex)
     {
         // Save the player's position and tile index
@@ -64,21 +50,6 @@ public class SceneController : MonoBehaviour
         yield return new WaitForSeconds(2f);
         SceneManager.LoadScene("PVPScene");
     }
-    
-
-    /*private IEnumerator ShowBattleMessages()
-    {
-        PlayerData.instance?.ShowBattleMessage("You have entered a Battle Tile!");
-        yield return new WaitForSeconds(2f);
-
-        PlayerData.instance?.ShowBattleMessage("Prepare to Fight!");
-        yield return new WaitForSeconds(3f);
-
-        // Hide the text and load the battle scene
-        PlayerData.instance?.HideBattleMessage();
-        SceneManager.LoadScene("PVPScene");
-    }*/
-
 
     public void LoadOverworldScene()
     {
@@ -105,5 +76,13 @@ public class SceneController : MonoBehaviour
         {
             diceRoller.ShowDiceUI();
         }
+    }
+
+    public void ResetAndLoadMapScene()
+    {
+        // Reset the player's state
+        PlayerData.instance.ResetPlayerState();
+        // Load the "Map" scene
+        SceneManager.LoadScene("Map");
     }
 }

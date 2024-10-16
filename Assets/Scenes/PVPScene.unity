@@ -215,6 +215,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1861295798}
     - target: {fileID: 8788551040786370410, guid: acefaf3ed76e7754180292d95ccc2e5d, type: 3}
+      propertyPath: WinUI
+      value: 
+      objectReference: {fileID: 1455333485}
+    - target: {fileID: 8788551040786370410, guid: acefaf3ed76e7754180292d95ccc2e5d, type: 3}
       propertyPath: enemyHPText
       value: 
       objectReference: {fileID: 1394299134}
@@ -891,6 +895,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7388771530559690209, guid: a0abdb610260b2f458681f03c061776a, type: 3}
+      propertyPath: lostUI
+      value: 
+      objectReference: {fileID: 9149239657935346796}
+    - target: {fileID: 7388771530559690209, guid: a0abdb610260b2f458681f03c061776a, type: 3}
       propertyPath: playerSide
       value: 
       objectReference: {fileID: 8864048542777459414}
@@ -898,6 +906,10 @@ PrefabInstance:
       propertyPath: inventoryUI
       value: 
       objectReference: {fileID: 2008797046}
+    - target: {fileID: 7388771530559690209, guid: a0abdb610260b2f458681f03c061776a, type: 3}
+      propertyPath: replayButton
+      value: 
+      objectReference: {fileID: 1046328752}
     - target: {fileID: 8666570086875940428, guid: a0abdb610260b2f458681f03c061776a, type: 3}
       propertyPath: m_LocalScale.x
       value: 3.5165186
@@ -1250,6 +1262,7 @@ MonoBehaviour:
   maxHealth: 100
   currentHealth: 0
   potionCount: 3
+  currentPotionCount: 0
   normalAttackDamage: 10
   specialAttackDamage: 20
   lastPosition: {x: 0, y: 0, z: 0}
@@ -1574,14 +1587,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 0}
+  m_Texture: {fileID: 2800000, guid: f82dc909236eb3e4d8c39d11deedfdce, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -1654,6 +1667,10 @@ PrefabInstance:
       propertyPath: playerHPText
       value: 
       objectReference: {fileID: 90092951}
+    - target: {fileID: 1089708340803642966, guid: 69c01b7f1b66f354e8e4f0170e9620f3, type: 3}
+      propertyPath: replayButton
+      value: 
+      objectReference: {fileID: 1046328752}
     - target: {fileID: 1089708340803642966, guid: 69c01b7f1b66f354e8e4f0170e9620f3, type: 3}
       propertyPath: potionCountText
       value: 
@@ -1764,6 +1781,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4737442877148695508}
+  - {fileID: 1046328753}
+  - {fileID: 1927113725}
   - {fileID: 1455333486}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1867,7 +1886,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -1,0 +1,262 @@
+fileFormatVersion: 2
+guid: 563a1e55c0286a94d9374cb1e7c96748
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 4359010764111455640
+    second: Main_menu_upscale_0
+  - first:
+      213: 2848756699594508199
+    second: Main_menu_upscale_1
+  - first:
+      213: -3025880702864779385
+    second: Main_menu_upscale_2
+  - first:
+      213: 4442404894913161912
+    second: Main_menu_upscale_3
+  - first:
+      213: -1419674923408059386
+    second: Main_menu_upscale_4
+  - first:
+      213: 7682561894535267
+    second: Main_menu_upscale_5
+  - first:
+      213: 4740565975819647868
+    second: Main_menu_upscale_6
+  - first:
+      213: 7030072807336696939
+    second: Main_menu_upscale_7
+  - first:
+      213: -4462485316893591752
+    second: Main_menu_upscale_8
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Main_menu_upscale_3
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 599
+        width: 742
+        height: 522
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8ba61cd07b796ad30800000000000000
+      internalID: 4442404894913161912
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Main_menu_upscale_4
+      rect:
+        serializedVersion: 2
+        x: 229
+        y: 419
+        width: 342
+        height: 142
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6049bbdcd2d4c4ce0800000000000000
+      internalID: -1419674923408059386
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Main_menu_upscale_5
+      rect:
+        serializedVersion: 2
+        x: 229
+        y: 239
+        width: 342
+        height: 142
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 36050b4df3b4b1000800000000000000
+      internalID: 7682561894535267
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Main_menu_upscale_9
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 1149
+        width: 521
+        height: 71
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ec5e19514952d5479bf42ebe13dae8d
+      internalID: 1996741119
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Main_menu_upscale_0
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 77
+        width: 513
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 82c7efca63a0d05418720f6eede44fc6
+      internalID: 4359010764111455640
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: f7bc3b59f5166e6488b713f47925695a
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      Main_menu_upscale_0: 4359010764111455640
+      Main_menu_upscale_1: 2848756699594508199
+      Main_menu_upscale_2: -3025880702864779385
+      Main_menu_upscale_3: 4442404894913161912
+      Main_menu_upscale_4: -1419674923408059386
+      Main_menu_upscale_5: 7682561894535267
+      Main_menu_upscale_6: 4740565975819647868
+      Main_menu_upscale_7: 7030072807336696939
+      Main_menu_upscale_8: -4462485316893591752
+      Main_menu_upscale_9: 1996741119
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

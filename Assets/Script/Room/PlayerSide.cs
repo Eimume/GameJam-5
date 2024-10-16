@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;  // Import UI library
+using UnityEngine.SceneManagement;
 
 public class PlayerSide : MonoBehaviour
 {
@@ -9,9 +10,10 @@ public class PlayerSide : MonoBehaviour
     public Slider hpSlider;
     //public GameObject potionUI;  // หน้าต่าง UI ของ Potion
     public GameObject lostUI;
+    public GameObject replayButton;
+    public GameObject exitButton;
 
     public PvPManager pvpManager;
-    
     public ActionType selectedAction;  // The action selected by the player
 
     //public bool isdying = false;
@@ -23,6 +25,8 @@ public class PlayerSide : MonoBehaviour
         UpdatePlayerHPUI();  // Initial update of the Player HP UI
         UpdatePotionCountUI();
         lostUI.SetActive(false);
+        replayButton.SetActive(false);
+        exitButton.SetActive(false);
         //potionUI.SetActive(false);  // ปิด UI ของ Potion เมื่อเริ่มเกม
     }
 
@@ -46,7 +50,7 @@ public class PlayerSide : MonoBehaviour
     {
         if (potionCountText != null)
         {
-            potionCountText.text = "Potions: " + PlayerData.instance.potionCount;
+            potionCountText.text = "Potions: " + PlayerData.instance.currentPotionCount;
         }
     }
 
@@ -77,15 +81,21 @@ public class PlayerSide : MonoBehaviour
         {
             lostUI.SetActive(true);
             Debug.Log("Player has lost. Showing Lost UI.");
+            if (replayButton != null)
+            {
+                replayButton.SetActive(true); // Show the Replay Button
+                exitButton.SetActive(true);
+                //Debug.Log("Player has lost. Showing Lost UI and Replay Button.");
+            }
         }
     }
 
     public void Heal(int healAmount)
     {
-        if (PlayerData.instance.potionCount > 0 && PlayerData.instance.currentHealth < PlayerData.instance.maxHealth)
+        if (PlayerData.instance.currentPotionCount > 0 && PlayerData.instance.currentHealth < PlayerData.instance.maxHealth)
         {
             PlayerData.instance.Heal(healAmount);
-            PlayerData.instance.potionCount--;
+            PlayerData.instance.currentPotionCount--;
 
            // potionCount--;  // ลดจำนวน Potion ลง
             Debug.Log("Player healed by " + healAmount + ". Health: " + PlayerData.instance.currentHealth);
@@ -96,7 +106,7 @@ public class PlayerSide : MonoBehaviour
             UpdatePotionCountUI();
             pvpManager.UpdateHPUI();
 
-            if (PlayerData.instance.potionCount <= 0)
+            if (PlayerData.instance.currentPotionCount <= 0)
             {
                 //potionUI.SetActive(false);
                 Debug.Log("No potions left!");
@@ -106,5 +116,19 @@ public class PlayerSide : MonoBehaviour
         {
             Debug.Log("No potions left or HP is full. Cannot use a potion.");
         }
+    }
+
+    public void OnReplayButtonClick()
+    {
+        // Reset the player state in PlayerData
+        PlayerData.instance.ResetPlayerState();
+        // Load the "Map" scene
+        SceneManager.LoadScene("Map");
+    }
+
+    public void OnExitButtonClick()
+    {
+        // Load the MainMenu scene
+        SceneManager.LoadScene("Menu");
     }
 }
