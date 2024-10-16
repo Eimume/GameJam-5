@@ -7,11 +7,6 @@ public class sumlong : MonoBehaviour
     public int currentTileIndex = 0; // ���˹�������鹢ͧ������
     public float moveSpeed = 2f; // ��������㹡������͹���ͧ������
 
-    public GameObject upModel; // ��������Ѻ�������͹�����
-    public GameObject downModel; // ��������Ѻ�������͹���ŧ
-    public GameObject leftModel; // ��������Ѻ�������͹������
-    public GameObject rightModel; // ��������Ѻ�������͹�����
-
     private bool isMoving = false;
 
     // ��ҧ�ԧ��ѧ���ͧ��ҧ�
@@ -23,19 +18,9 @@ public class sumlong : MonoBehaviour
 
     void Start()
     {
-        // ��͹���ŷ�����������������
-        downModel.SetActive(false);
-        leftModel.SetActive(false);
-        rightModel.SetActive(false);
-        upModel.SetActive(true);
+    
 
-        // ��Ǩ�ͺ��ҡ��ͧ��� UI �١��駤�����
-        if (gameCamera != null)
-            gameCamera.gameObject.SetActive(true);
-        if (shopCamera != null)
-            shopCamera.gameObject.SetActive(false);
-        if (shopUI != null)
-            shopUI.SetActive(false);
+      
     }
 
     public IEnumerator MovePlayer(int steps)
@@ -115,29 +100,6 @@ public class sumlong : MonoBehaviour
             movementDirection = tiles[currentTileIndex + 1].position - (currentTileIndex > 0 ? tiles[currentTileIndex].position : transform.position);
         }
 
-        // �Դ���ŷ�������͹
-        upModel.SetActive(false);
-        downModel.SetActive(false);
-        leftModel.SetActive(false);
-        rightModel.SetActive(false);
-
-        // ��Ǩ�ͺ��ȷҧ�������͹���
-        if (movementDirection.y > 0)
-        {
-            upModel.SetActive(true); // ����͹�����
-        }
-        else if (movementDirection.y < 0)
-        {
-            downModel.SetActive(true); // ����͹���ŧ
-        }
-        else if (movementDirection.x > 0)
-        {
-            rightModel.SetActive(true); // ����͹�����
-        }
-        else if (movementDirection.x < 0)
-        {
-            leftModel.SetActive(true); // ����͹������
-        }
     }
 
     private void CheckSpecialTile()
