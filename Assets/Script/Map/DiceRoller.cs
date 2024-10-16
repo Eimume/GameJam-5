@@ -15,12 +15,19 @@ public class DiceRoller : MonoBehaviour
 
     void Start()
     {
-        // �����ѧ��ѹ������¡����ͻ����١��ԡ
         rollDiceButton.onClick.AddListener(RollDice);
     }
 
     void RollDice()
     {
+        if (!playerMovement) return;
+
+        if (playerMovement.isMoving)
+        {
+            // If the player is already moving, don't allow another dice roll
+            return;
+        }
+
         int diceResult = random.Next(1, 7); // ����١���Ẻ 6 ˹��
         StartCoroutine(RollDiceAnimation(diceResult)); // ���¡��ҹ͹�����蹡����ع
     }
@@ -44,6 +51,20 @@ public class DiceRoller : MonoBehaviour
         diceResultText.text = "Result : " + finalResult.ToString();
 
         // �觤�Ҩӹǹ���Ƿ������蹵�ͧ�Թ
-        StartCoroutine(playerMovement.MovePlayer(finalResult)); // ���¡��ҹ MovePlayer ��ҹ Coroutine
+        //StartCoroutine(playerMovement.MovePlayer(finalResult)); // ���¡��ҹ MovePlayer ��ҹ Coroutine
+        playerMovement.MovePlayer(finalResult);
+    }
+
+    public void HideDiceUI()
+    {
+        rollDiceButton.gameObject.SetActive(false);
+        diceResultText.gameObject.SetActive(false);
+    }
+
+    // Method to show the dice UI again (optional if you need to reset it later)
+    public void ShowDiceUI()
+    {
+        rollDiceButton.gameObject.SetActive(true);
+        diceResultText.gameObject.SetActive(true);
     }
 }

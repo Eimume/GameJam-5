@@ -3,27 +3,29 @@ using UnityEngine;
 
 public class sumlong : MonoBehaviour
 {
-    public Transform[] tiles; // Array �ͧ���˹觢ͧ���Ъ�ͧ���
-    public int currentTileIndex = 0; // ���˹�������鹢ͧ������
-    public float moveSpeed = 2f; // ��������㹡������͹���ͧ������
+    public Transform[] tiles; 
+    public int currentTileIndex = 0; 
+    public float moveSpeed = 2f; 
 
-    private bool isMoving = false;
+    public bool isMoving = false;
 
-    // ��ҧ�ԧ��ѧ���ͧ��ҧ�
-    public Camera gameCamera; // ���ͧ����ѡ
-    public Camera shopCamera; // ���ͧ��ҹ���
+    [SerializeField] Animator animator;
 
-    // ��ҧ�ԧ��ѧ UI ��ҹ���
-    public GameObject shopUI;
 
-    void Start()
+    private void Start()
     {
-    
-
-      
+        //animator = GetComponent<Animator>();
     }
 
-    public IEnumerator MovePlayer(int steps)
+    public void MovePlayer(int steps)
+    {
+        if (!isMoving)
+        {
+            StartCoroutine(MovePlayerCoroutine(steps));
+        }
+    }
+
+    private IEnumerator MovePlayerCoroutine(int steps)
     {
         isMoving = true;
 
@@ -31,76 +33,132 @@ public class sumlong : MonoBehaviour
         {
             if (currentTileIndex + 1 >= tiles.Length)
             {
-                // ��ͧ�ѹ�������Թ�Թ�ͺࢵ�ͧ tiles
+                // Stop if we've reached the end of the tiles array
                 break;
             }
 
             Vector3 targetPosition = tiles[currentTileIndex + 1].position;
 
-            // ����¹���ŵ����ȷҧ�������͹����͹������Թ
-            ChangeModel();
+            // Determine the direction for animation
+            SetAnimationDirection(targetPosition);
 
-            // ����͹���价���ͧ�Ѵ价��йԴ
+            // Move towards the target tile
             while (Vector3.Distance(transform.position, targetPosition) > 0.01f)
             {
-                transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
+                Vector3 newPosition = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
+                SetAnimationDirection(newPosition); // Update direction if needed during movement
+                transform.position = newPosition;
                 yield return null;
             }
 
-            currentTileIndex++; // �������˹觷��� 1
-
+            currentTileIndex++; // Increment the tile index
             steps--;
-            yield return new WaitForSeconds(0.2f); // ˹�ǧ������硹����������١������͹���Ѵਹ
+            yield return new WaitForSeconds(0.2f); // Wait briefly before the next step
         }
 
-        // ��Ǩ�ͺ��ͧ�������ѧ�ҡ�������͹����������
+        ResetToIdle();
+
+        // Check for any special tile effects after movement
         CheckSpecialTile();
 
         isMoving = false;
     }
 
-    public IEnumerator MoveBackward(int steps)
+    public void MoveBackward(int steps)
     {
+        if (!isMoving)
+        {
+            StartCoroutine(MoveBackwardCoroutine(steps));
+        }
+    }
+
+    private IEnumerator MoveBackwardCoroutine(int steps)
+    {
+        isMoving = true;
+
         while (steps > 0)
         {
             if (currentTileIndex - 1 < 0)
             {
-                // ��ͧ�ѹ�������¡�Ѻ仹��¡��� 0
+                // Stop if we've reached the start of the tiles array
                 break;
             }
 
             Vector3 targetPosition = tiles[currentTileIndex - 1].position;
 
-            // ����¹���ŵ����ȷҧ�������͹����͹������Թ
-            ChangeModel();
+            // Determine the direction for animation
+            SetAnimationDirection(targetPosition);
 
-            // ����͹����Ѻ价���ͧ�Ѵ价��йԴ
+            // Move towards the target tile
             while (Vector3.Distance(transform.position, targetPosition) > 0.01f)
             {
-                transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
+                Vector3 newPosition = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
+                SetAnimationDirection(newPosition); // Update direction if needed during movement
+                transform.position = newPosition;
                 yield return null;
             }
 
-            currentTileIndex--; // Ŵ���˹觷��� 1
+            currentTileIndex--; // Decrement the tile index
             steps--;
-            yield return new WaitForSeconds(0.2f); // ˹�ǧ������硹����������١�ö�¡�Ѻ�Ѵਹ
+            yield return new WaitForSeconds(0.2f); // Wait briefly before the next step
         }
 
-        // ��Ǩ�ͺ��ͧ�������ѧ�ҡ��ö�¡�Ѻ�������
+        ResetToIdle();
+
+        // Check for any special tile effects after movement
         CheckSpecialTile();
 
         isMoving = false;
     }
-
-    private void ChangeModel()
+    private void SetAnimationDirection(Vector3 targetPosition)
     {
-        Vector3 movementDirection = Vector3.zero;
-        if (currentTileIndex + 1 < tiles.Length)
-        {
-            movementDirection = tiles[currentTileIndex + 1].position - (currentTileIndex > 0 ? tiles[currentTileIndex].position : transform.position);
-        }
+        Vector3 direction = targetPosition - transform.position;
 
+        // Reset all movement booleans
+        animator.SetBool("isMovingRight", false);
+        animator.SetBool("isMovingLeft", false);
+        animator.SetBool("isMovingUp", false);
+        animator.SetBool("isMovingDown", false);
+
+        // Determine which animation to play based on movement direction
+        if (Mathf.Abs(direction.x) > Mathf.Abs(direction.y))
+        {
+            if (direction.x > 0) // Moving right
+            {
+                animator.SetBool("isMovingRight", true);
+                //lastDirection = 3; // Right
+            }
+            else if (direction.x < 0) // Moving left
+            {
+                animator.SetBool("isMovingLeft", true);
+                //lastDirection = 2; // Left
+            }
+        }
+        else
+        {
+            if (direction.y > 0) // Moving up
+            {
+                animator.SetBool("isMovingUp", true);
+                //lastDirection = 1; // Up
+            }
+            else if (direction.y < 0) // Moving down
+            {
+                animator.SetBool("isMovingDown", true);
+                //lastDirection = 0; // Down
+            }
+        }
     }
+
+    private void ResetToIdle()
+    {
+        // Reset all movement animations and set to idle
+        animator.SetBool("isMovingRight", false);
+        animator.SetBool("isMovingLeft", false);
+        animator.SetBool("isMovingUp", false);
+        animator.SetBool("isMovingDown", false);
+        animator.SetTrigger("Idle"); // Trigger idle animation
+    }
+    
 
     private void CheckSpecialTile()
     {
@@ -109,55 +167,35 @@ public class sumlong : MonoBehaviour
         {
             if (specialTile.isMoveBackwardTile)
             {
-                StartCoroutine(MoveBackward(specialTile.moveBackwardSteps));
+                //StartCoroutine(MoveBackward(specialTile.moveBackwardSteps));
+                MoveBackward(specialTile.moveBackwardSteps);
             }
             else if (specialTile.isDamageTile)
             {
-                // Ŵ���ʹ������
-                PlayerHealth playerHealth = GetComponent<PlayerHealth>();
-                if (playerHealth != null)
-                {
-                    playerHealth.TakeDamage(specialTile.damageAmount);
-                }
+                PlayerData.instance.TakeDamage(specialTile.damageAmount);
             }
             else if (specialTile.isShopTile)
             {
-                // �Դ��ҹ���
                 OpenShop();
             }
+            else if (specialTile.isBattleTile)
+            {
+                SceneController.instance.SavePlayerState(transform.position, currentTileIndex);
+                SceneController.instance.LoadBattleScene();
+            }
         }
+    }
+
+    public void RestorePlayerState(Vector3 position, int tileIndex)
+    {
+        // Restore the player's position and tile index
+        transform.position = position;
+        currentTileIndex = tileIndex;
     }
 
     private void OpenShop()
     {
-        if (gameCamera != null && shopCamera != null)
-        {
-            gameCamera.gameObject.SetActive(false);
-            shopCamera.gameObject.SetActive(true);
-        }
-
-        if (shopUI != null)
-        {
-            shopUI.SetActive(true);
-        }
-
-        // �س����ö�����ѧ��ѹ��� � �������Ǣ�ͧ�Ѻ��ҹ��������� �� �����ش�������͹��� ���͡���ʴ���ͤ���
-        Debug.Log("�Դ��ҹ���");
+        Debug.Log("Shop opened.");
     }
 
-    public void CloseShop()
-    {
-        if (gameCamera != null && shopCamera != null)
-        {
-            shopCamera.gameObject.SetActive(false);
-            gameCamera.gameObject.SetActive(true);
-        }
-
-        if (shopUI != null)
-        {
-            shopUI.SetActive(false);
-        }
-
-        Debug.Log("�Դ��ҹ���");
-    }
 }

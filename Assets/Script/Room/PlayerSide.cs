@@ -3,13 +3,7 @@ using UnityEngine.UI;  // Import UI library
 
 public class PlayerSide : MonoBehaviour
 {
-    public int health = 100;           // Player's health
-    public int currentHp;
-    public int normalAttackDamage = 10;  // Damage for a normal attack
-    public int specialAttackDamage = 20; // Damage for a special attack
 
-    public ItemType currentItem;  // ไอเท็มที่ผู้เล่นกำลังจะใช้ (เช่น Potion)
-    public int potionCount = 3;  // จำนวน Potion ที่ผู้เล่นมี
     public Text potionCountText;  // Text สำหรับแสดงจำนวน Potion
     public Text playerHPText;  // อ้างอิงถึง Text UI สำหรับแสดง HP ของผู้เล่น
     //public GameObject potionUI;  // หน้าต่าง UI ของ Potion
@@ -24,7 +18,7 @@ public class PlayerSide : MonoBehaviour
     public void Start()
     {
         //isdying = false;
-        currentHp = health;
+        //currentHp = health;
         UpdatePlayerHPUI();  // Initial update of the Player HP UI
         UpdatePotionCountUI();
         lostUI.SetActive(false);
@@ -36,7 +30,7 @@ public class PlayerSide : MonoBehaviour
     {
         if (playerHPText != null)
         {
-            playerHPText.text = "Player HP: " + currentHp.ToString() +  " / " + health.ToString();
+            playerHPText.text = "Player HP: " + PlayerData.instance.currentHealth + " / " + PlayerData.instance.maxHealth;
         }
     }
 
@@ -44,7 +38,7 @@ public class PlayerSide : MonoBehaviour
     {
         if (potionCountText != null)
         {
-            potionCountText.text = "Potions: " + potionCount.ToString();
+            potionCountText.text = "Potions: " + PlayerData.instance.potionCount;
         }
     }
 
@@ -56,13 +50,14 @@ public class PlayerSide : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        currentHp -= damage;
-        if (currentHp < 0) currentHp = 0;
-        Debug.Log("Player takes " + damage + " damage. Health: " + currentHp);
+        PlayerData.instance.TakeDamage(damage);
+        /*currentHp -= damage;
+        if (currentHp < 0) currentHp = 0;*/
+        Debug.Log("Player takes " + damage + " damage. Health: " + PlayerData.instance.currentHealth);
         UpdatePlayerHPUI();
         pvpManager.UpdateHPUI();  // Update the UI in PvPManager
 
-        if (currentHp == 0)
+        if (PlayerData.instance.currentHealth == 0)
         {
             Die();
         }
@@ -79,27 +74,21 @@ public class PlayerSide : MonoBehaviour
 
     public void Heal(int healAmount)
     {
-        if (potionCount > 0 && currentHp < health)
+        if (PlayerData.instance.potionCount > 0 && PlayerData.instance.currentHealth < PlayerData.instance.maxHealth)
         {
-            Debug.Log("Healing amount: " + healAmount);
-            Debug.Log("Player current HP before healing: " + currentHp);
+            PlayerData.instance.Heal(healAmount);
+            PlayerData.instance.potionCount--;
 
-            currentHp += healAmount;  // เพิ่ม HP ตามค่าที่ฟื้นฟู
-            if (currentHp > health)
-            {
-                currentHp = health;  // หากเกินค่าพลังชีวิตสูงสุด ให้ตั้งเป็นค่า max
-            }
+           // potionCount--;  // ลดจำนวน Potion ลง
+            Debug.Log("Player healed by " + healAmount + ". Health: " + PlayerData.instance.currentHealth);
+            //Debug.Log("Potions left: " + potionCount);
 
-            potionCount--;  // ลดจำนวน Potion ลง
-            Debug.Log("Player healed by " + healAmount + ". Health: " + currentHp);
-            Debug.Log("Potions left: " + potionCount);
-
-            Debug.Log("Player Health after healing: " + currentHp);
+            //Debug.Log("Player Health after healing: " + currentHp);
             UpdatePlayerHPUI();  // อัปเดตค่า HP ใน UI หลังจากฟื้นฟู
             UpdatePotionCountUI();
             pvpManager.UpdateHPUI();
 
-            if (potionCount <= 0)
+            if (PlayerData.instance.potionCount <= 0)
             {
                 //potionUI.SetActive(false);
                 Debug.Log("No potions left!");
@@ -110,20 +99,4 @@ public class PlayerSide : MonoBehaviour
             Debug.Log("No potions left or HP is full. Cannot use a potion.");
         }
     }
-    /*public void OpenPotionUI()
-    {
-        if (potionCount > 0)
-        {
-            potionUI.SetActive(true);
-        }
-        else
-        {
-            Debug.Log("No potions available to use.");
-        }
-    }
-
-    public void NoUsePotion()
-    {
-        potionUI.SetActive(false);
-    }*/
 }

@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &8864048544100632439
+--- !u!1 &5448435341738254514
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,10 +8,10 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 421290578579460387}
-  - component: {fileID: 8320677901396887824}
-  - component: {fileID: 3161677724718526197}
-  - component: {fileID: 1779806157872202378}
+  - component: {fileID: 7391564554914629363}
+  - component: {fileID: 4639969867165544204}
+  - component: {fileID: 8277395256823549463}
+  - component: {fileID: 1089708340803642966}
   m_Layer: 0
   m_Name: Player side
   m_TagString: Untagged
@@ -19,13 +19,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &421290578579460387
+--- !u!4 &7391564554914629363
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8864048544100632439}
+  m_GameObject: {fileID: 5448435341738254514}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -4.89, y: -1.75, z: 0}
@@ -34,13 +34,13 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &8320677901396887824
+--- !u!212 &4639969867165544204
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8864048544100632439}
+  m_GameObject: {fileID: 5448435341738254514}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -89,13 +89,13 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3161677724718526197
+--- !u!114 &8277395256823549463
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8864048544100632439}
+  m_GameObject: {fileID: 5448435341738254514}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8797560501de6644683f6dfb2780dd4a, type: 3}
@@ -107,25 +107,20 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 89e9a105c5c016e4f92ece88a47d4bd7, type: 2}
   - {fileID: 11400000, guid: 39025c28b1e53b4499e1b1cb773bca01, type: 2}
   - {fileID: 11400000, guid: ee416365f4bfe21469470e760ebcd9f3, type: 2}
---- !u!114 &1779806157872202378
+--- !u!114 &1089708340803642966
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8864048544100632439}
+  m_GameObject: {fileID: 5448435341738254514}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 81dd350166b7f8049906c8824a72ef28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
-  currentHp: 0
-  normalAttackDamage: 10
-  specialAttackDamage: 20
-  currentItem: {fileID: 0}
-  potionCount: 3
   potionCountText: {fileID: 0}
   playerHPText: {fileID: 0}
+  lostUI: {fileID: 0}
   pvpManager: {fileID: 0}
   selectedAction: {fileID: 0}

@@ -141,12 +141,12 @@ public class PvPManager : MonoBehaviour
             }
             else if (!player.selectedAction.isSpecial && enemy.selectedAction.isSpecial)
             {
-                enemy.TakeDamage(player.normalAttackDamage);
+                enemy.TakeDamage(PlayerData.instance.normalAttackDamage);
                 Debug.Log("Player's normal attack bypasses enemy's special block. Enemy takes damage.");
             }
             else if (player.selectedAction.isSpecial && !enemy.selectedAction.isSpecial)
             {
-                enemy.TakeDamage(player.specialAttackDamage);
+                enemy.TakeDamage(PlayerData.instance.specialAttackDamage);
                 Debug.Log("Player's special attack bypasses enemy's normal block. Enemy takes damage.");
             }
             else if (player.selectedAction.isSpecial && enemy.selectedAction.isSpecial)
