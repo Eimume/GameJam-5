@@ -641,7 +641,7 @@ MonoBehaviour:
   isMoveBackwardTile: 0
   moveBackwardSteps: 3
   damageAmount: 10
-  isDamageTile: 1
+  isDamageTile: 0
   isShopTile: 0
   isBattleTile: 1
 --- !u!114 &879997284
@@ -814,7 +814,7 @@ MonoBehaviour:
   isMoveBackwardTile: 0
   moveBackwardSteps: 3
   damageAmount: 10
-  isDamageTile: 1
+  isDamageTile: 0
   isShopTile: 0
   isBattleTile: 1
 --- !u!1 &1281738412
@@ -1138,7 +1138,7 @@ MonoBehaviour:
   isMoveBackwardTile: 0
   moveBackwardSteps: 3
   damageAmount: 10
-  isDamageTile: 1
+  isDamageTile: 0
   isShopTile: 0
   isBattleTile: 1
 --- !u!114 &1582314947
