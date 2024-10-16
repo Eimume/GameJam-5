@@ -13,16 +13,21 @@ public class PlayerSide : MonoBehaviour
     public Text potionCountText;  // Text สำหรับแสดงจำนวน Potion
     public Text playerHPText;  // อ้างอิงถึง Text UI สำหรับแสดง HP ของผู้เล่น
     //public GameObject potionUI;  // หน้าต่าง UI ของ Potion
+    public GameObject lostUI;
 
     public PvPManager pvpManager;
     
     public ActionType selectedAction;  // The action selected by the player
 
+    //public bool isdying = false;
+
     public void Start()
     {
+        //isdying = false;
         currentHp = health;
         UpdatePlayerHPUI();  // Initial update of the Player HP UI
         UpdatePotionCountUI();
+        lostUI.SetActive(false);
         //potionUI.SetActive(false);  // ปิด UI ของ Potion เมื่อเริ่มเกม
     }
 
@@ -56,6 +61,20 @@ public class PlayerSide : MonoBehaviour
         Debug.Log("Player takes " + damage + " damage. Health: " + currentHp);
         UpdatePlayerHPUI();
         pvpManager.UpdateHPUI();  // Update the UI in PvPManager
+
+        if (currentHp == 0)
+        {
+            Die();
+        }
+    }
+
+    public void Die()
+    {
+        if (lostUI != null)
+        {
+            lostUI.SetActive(true);
+            Debug.Log("Player has lost. Showing Lost UI.");
+        }
     }
 
     public void Heal(int healAmount)

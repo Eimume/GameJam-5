@@ -7,7 +7,7 @@ public class ButtonController : MonoBehaviour
     public GameObject actionButton;
 
     public GameObject exitButton;
-
+    //public GameObject LoseUI;
     public GameObject inventoryUI;
 
     public GameObject[] actionOptions;
@@ -16,6 +16,7 @@ public class ButtonController : MonoBehaviour
     public PlayerSide playerSide;
     public GameObject potionCountTextUI;
 
+
     private void Start()
     {
         // Start by showing only Inventory and Action buttons, hide the rest
@@ -23,6 +24,7 @@ public class ButtonController : MonoBehaviour
         actionButton.SetActive(true);
         exitButton.SetActive(false);
         inventoryUI.SetActive(false);
+        //LoseUI.SetActive(false);
 
         potionCountTextUI.SetActive(false);
 
@@ -44,8 +46,6 @@ public class ButtonController : MonoBehaviour
         inventoryButton.SetActive(false);
         actionButton.SetActive(false);
 
-        inventoryUI.SetActive(true);
-
         foreach (GameObject button in inventoryOptions)
         {
             button.SetActive(true);
@@ -66,7 +66,7 @@ public class ButtonController : MonoBehaviour
         {
             button.SetActive(true);
         }
-
+        potionCountTextUI.SetActive(false);
         // Show the Exit button
         exitButton.SetActive(true);
     }
@@ -99,4 +99,10 @@ public class ButtonController : MonoBehaviour
         playerSide.Heal(item.BuffEffect);  // เรียกฟังก์ชัน Heal ใน PlayerSide โดยส่งค่าการฟื้นฟู
         OnExitButtonClick();  // ปิดเมนูหลังจากใช้ไอเท็ม
     }
+
+    /*public void Lost()
+    {
+        playerSide.Die(playerSide.isdying);
+        LoseUI.SetActive(playerSide.isdying);
+    }*/
 }
