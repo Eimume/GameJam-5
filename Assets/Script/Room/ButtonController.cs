@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class ButtonController : MonoBehaviour
 {
@@ -109,7 +111,16 @@ public class ButtonController : MonoBehaviour
         if (lostUI != null)
         {
             lostUI.SetActive(true);
-            replayButton.SetActive(true); // Show the replay button when Lost UI is shown
+
+            if (replayButton != null)
+            {
+                replayButton.SetActive(true); // Make sure the replay button is activated
+                Debug.Log("Replay Button is now active.");
+            }
+            else
+            {
+                Debug.LogWarning("Replay Button reference is missing!");
+            }
         }
     }
 

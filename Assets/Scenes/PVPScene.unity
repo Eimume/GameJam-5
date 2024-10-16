@@ -638,6 +638,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7388771530559690209, guid: a0abdb610260b2f458681f03c061776a, type: 3}
+      propertyPath: lostUI
+      value: 
+      objectReference: {fileID: 9149239657935346796}
+    - target: {fileID: 7388771530559690209, guid: a0abdb610260b2f458681f03c061776a, type: 3}
       propertyPath: playerSide
       value: 
       objectReference: {fileID: 8864048542777459414}
@@ -645,6 +649,10 @@ PrefabInstance:
       propertyPath: inventoryUI
       value: 
       objectReference: {fileID: 2008797046}
+    - target: {fileID: 7388771530559690209, guid: a0abdb610260b2f458681f03c061776a, type: 3}
+      propertyPath: replayButton
+      value: 
+      objectReference: {fileID: 1046328752}
     - target: {fileID: 8666570086875940428, guid: a0abdb610260b2f458681f03c061776a, type: 3}
       propertyPath: m_LocalScale.x
       value: 3.5165186
@@ -708,17 +716,23 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6586504456952725683, guid: a0abdb610260b2f458681f03c061776a, type: 3}
   m_PrefabInstance: {fileID: 449575811}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 449575816}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3c69b1a0df68883449a94bb484ce9b3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &449575816 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6286990984129460271, guid: a0abdb610260b2f458681f03c061776a, type: 3}
+--- !u!114 &449575820 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7388771530559690209, guid: a0abdb610260b2f458681f03c061776a, type: 3}
   m_PrefabInstance: {fileID: 449575811}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b9ede2328c50ff47b3851fda8c60426, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &450245773
 GameObject:
   m_ObjectHideFlags: 0
@@ -869,7 +883,7 @@ GameObject:
   - component: {fileID: 1046328755}
   - component: {fileID: 1046328754}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Replay Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -882,17 +896,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1046328752}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.86742, y: 0.86742, z: 0.86742}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1460305353}
-  m_Father: {fileID: 4737442877148695508}
+  m_Father: {fileID: 6404274092440057237}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000017643, y: 22.7353}
+  m_AnchoredPosition: {x: 0.000017643, y: 19.721079}
   m_SizeDelta: {x: 629.028, y: 122.5294}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1046328754
@@ -939,13 +953,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 449575816}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
+      - m_Target: {fileID: 449575820}
+        m_TargetAssemblyTypeName: ButtonController, Assembly-CSharp
+        m_MethodName: OnReplayButtonClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -964,7 +978,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1021,6 +1035,7 @@ MonoBehaviour:
   maxHealth: 100
   currentHealth: 0
   potionCount: 3
+  currentPotionCount: 0
   normalAttackDamage: 10
   specialAttackDamage: 20
   lastPosition: {x: 0, y: 0, z: 0}
@@ -1058,7 +1073,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1455333486
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1174,7 +1189,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: ' '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1514,8 +1529,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.86742, y: 0.86742, z: 0.86742}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1046328753}
+  m_Children: []
   m_Father: {fileID: 6404274092440057237}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1609,6 +1623,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4737442877148695508}
+  - {fileID: 1046328753}
   - {fileID: 1455333486}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
