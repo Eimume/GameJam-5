@@ -1,3 +1,4 @@
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -5,20 +6,22 @@ public class EnemySide : MonoBehaviour
 {
     public ActionType selectedAction;  // The action selected by the enemy
     public int health = 100;           // Enemy's health
+    public int currentHp;
     public int normalAttackDamage = 10;  // Damage for a normal attack
     public int specialAttackDamage = 20; // Damage for a special attack
 
      public Text enemyHPText;  // Reference to Enemy HP UI Text
 
-    private void Start()
+    public void Start()
     {
+        currentHp = health;
         UpdateEnemyHPUI();  // Initial update of the Enemy HP UI
     }
 
     // Update the enemy's HP in the UI
-    private void UpdateEnemyHPUI()
+    public void UpdateEnemyHPUI()
     {
-        enemyHPText.text = "Enemy HP: " + health.ToString();
+        enemyHPText.text = "Enemy HP: " + currentHp.ToString() + " / " + health.ToString();
     }
 
     public void ChooseBlock(ActionType[] blockActions)
@@ -37,9 +40,9 @@ public class EnemySide : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        health -= damage;
-        if (health < 0) health = 0;
-        Debug.Log("Enemy takes " + damage + " damage. Health: " + health);
+        currentHp -= damage;
+        if (currentHp < 0) currentHp = 0;
+        Debug.Log("Enemy takes " + damage + " damage. Health: " + currentHp);
         UpdateEnemyHPUI();
     }
 }

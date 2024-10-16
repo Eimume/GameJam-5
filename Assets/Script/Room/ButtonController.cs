@@ -8,10 +8,13 @@ public class ButtonController : MonoBehaviour
 
     public GameObject exitButton;
 
+    public GameObject inventoryUI;
+
     public GameObject[] actionOptions;
     public GameObject[] inventoryOptions;
 
     public PlayerSide playerSide;
+    public GameObject potionCountTextUI;
 
     private void Start()
     {
@@ -19,7 +22,9 @@ public class ButtonController : MonoBehaviour
         inventoryButton.SetActive(true);
         actionButton.SetActive(true);
         exitButton.SetActive(false);
-   
+        inventoryUI.SetActive(false);
+
+        potionCountTextUI.SetActive(false);
 
         foreach (GameObject button in inventoryOptions)
         {
@@ -39,10 +44,13 @@ public class ButtonController : MonoBehaviour
         inventoryButton.SetActive(false);
         actionButton.SetActive(false);
 
+        inventoryUI.SetActive(true);
+
         foreach (GameObject button in inventoryOptions)
         {
             button.SetActive(true);
         }
+        potionCountTextUI.SetActive(true);
 
         exitButton.SetActive(true);
     }
@@ -76,6 +84,9 @@ public class ButtonController : MonoBehaviour
             button.SetActive(false);
         }
 
+        potionCountTextUI.SetActive(false);
+
+        inventoryUI.SetActive(false);
         // Show the main buttons again
         inventoryButton.SetActive(true);
         actionButton.SetActive(true);

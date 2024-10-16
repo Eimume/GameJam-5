@@ -29,8 +29,10 @@ public class PvPManager : MonoBehaviour
 
     public void UpdateHPUI()
     {
-        playerHPText.text = "Player HP: " + player.currentHp;
-        enemyHPText.text = "Enemy HP: " + enemy.health;
+        //playerHPText.text = "Player HP: " + player.currentHp + " / " + player.health;
+        //enemyHPText.text = "Enemy HP: " + enemy.currentHp + " / " + enemy.health;
+        player.UpdatePlayerHPUI();
+        enemy.UpdateEnemyHPUI();
     }
 
     IEnumerator SpinToDecideWhoStarts()

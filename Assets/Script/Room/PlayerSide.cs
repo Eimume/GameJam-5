@@ -9,25 +9,37 @@ public class PlayerSide : MonoBehaviour
     public int specialAttackDamage = 20; // Damage for a special attack
 
     public ItemType currentItem;  // ไอเท็มที่ผู้เล่นกำลังจะใช้ (เช่น Potion)
+    public int potionCount = 3;  // จำนวน Potion ที่ผู้เล่นมี
+    public Text potionCountText;  // Text สำหรับแสดงจำนวน Potion
     public Text playerHPText;  // อ้างอิงถึง Text UI สำหรับแสดง HP ของผู้เล่น
-    public GameObject potionUI;  // หน้าต่าง UI ของ Potion
+    //public GameObject potionUI;  // หน้าต่าง UI ของ Potion
+
     public PvPManager pvpManager;
     
     public ActionType selectedAction;  // The action selected by the player
 
-    private void Start()
+    public void Start()
     {
         currentHp = health;
         UpdatePlayerHPUI();  // Initial update of the Player HP UI
-        potionUI.SetActive(false);  // ปิด UI ของ Potion เมื่อเริ่มเกม
+        UpdatePotionCountUI();
+        //potionUI.SetActive(false);  // ปิด UI ของ Potion เมื่อเริ่มเกม
     }
 
     // Update the player's HP in the UI
-    private void UpdatePlayerHPUI()
+    public void UpdatePlayerHPUI()
     {
         if (playerHPText != null)
         {
-            playerHPText.text = "Player HP: " + currentHp.ToString();
+            playerHPText.text = "Player HP: " + currentHp.ToString() +  " / " + health.ToString();
+        }
+    }
+
+    private void UpdatePotionCountUI()
+    {
+        if (potionCountText != null)
+        {
+            potionCountText.text = "Potions: " + potionCount.ToString();
         }
     }
 
@@ -48,44 +60,51 @@ public class PlayerSide : MonoBehaviour
 
     public void Heal(int healAmount)
     {
-        Debug.Log("Healing amount: " + healAmount);
-        Debug.Log("Player current HP before healing: " + currentHp);
-
-        currentHp += healAmount;  // เพิ่ม HP ตามค่าที่ฟื้นฟู
-
-        // ตรวจสอบว่า HP ไม่เกินค่าพลังชีวิตสูงสุด
-        if (currentHp > health)
+        if (potionCount > 0 && currentHp < health)
         {
-            currentHp = health;  // หากเกินค่าพลังชีวิตสูงสุด ให้ตั้งเป็นค่า max
+            Debug.Log("Healing amount: " + healAmount);
+            Debug.Log("Player current HP before healing: " + currentHp);
+
+            currentHp += healAmount;  // เพิ่ม HP ตามค่าที่ฟื้นฟู
+            if (currentHp > health)
+            {
+                currentHp = health;  // หากเกินค่าพลังชีวิตสูงสุด ให้ตั้งเป็นค่า max
+            }
+
+            potionCount--;  // ลดจำนวน Potion ลง
+            Debug.Log("Player healed by " + healAmount + ". Health: " + currentHp);
+            Debug.Log("Potions left: " + potionCount);
+
+            Debug.Log("Player Health after healing: " + currentHp);
+            UpdatePlayerHPUI();  // อัปเดตค่า HP ใน UI หลังจากฟื้นฟู
+            UpdatePotionCountUI();
+            pvpManager.UpdateHPUI();
+
+            if (potionCount <= 0)
+            {
+                //potionUI.SetActive(false);
+                Debug.Log("No potions left!");
+            }
+         }
+        else
+        {
+            Debug.Log("No potions left or HP is full. Cannot use a potion.");
         }
-
-        Debug.Log("Player Health after healing: " + currentHp);
-        UpdatePlayerHPUI();  // อัปเดตค่า HP ใน UI หลังจากฟื้นฟู
-        pvpManager.UpdateHPUI();
     }
-
-    /*
-    public void UseItemFromInventory(ItemType item)
+    /*public void OpenPotionUI()
     {
-
-        if (item != null && currentHp < health)
+        if (potionCount > 0)
         {
-            Heal(item.BuffEffect);  // เรียกใช้ฟังก์ชัน Heal แทนการเพิ่ม HP ตรง ๆ
+            potionUI.SetActive(true);
         }
         else
         {
-            Debug.Log("Item is null or player health is already full.");
+            Debug.Log("No potions available to use.");
         }
     }
 
-    public void OpenPotionUI()
-    {
-        potionUI.SetActive(true);  // เปิดหน้าต่าง UI ของ Potion
-    }
-
-    // ฟังก์ชันสำหรับปิด UI ของ Potion โดยไม่ใช้
     public void NoUsePotion()
     {
-        potionUI.SetActive(false);  // ปิดหน้าต่าง UI ของ Potion โดยไม่ทำอะไร
+        potionUI.SetActive(false);
     }*/
 }
