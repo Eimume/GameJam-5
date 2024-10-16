@@ -605,7 +605,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2, y: 2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -643,7 +643,7 @@ MonoBehaviour:
   damageAmount: 10
   isDamageTile: 0
   isShopTile: 0
-  isBattleTile: 1
+  isBattleTile: 0
 --- !u!114 &879997284
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -661,7 +661,7 @@ MonoBehaviour:
   damageAmount: 10
   isDamageTile: 0
   isShopTile: 0
-  isBattleTile: 1
+  isBattleTile: 0
 --- !u!1 &970621012
 GameObject:
   m_ObjectHideFlags: 0
@@ -816,7 +816,7 @@ MonoBehaviour:
   damageAmount: 10
   isDamageTile: 0
   isShopTile: 0
-  isBattleTile: 1
+  isBattleTile: 0
 --- !u!1 &1281738412
 GameObject:
   m_ObjectHideFlags: 0
@@ -1140,7 +1140,7 @@ MonoBehaviour:
   damageAmount: 10
   isDamageTile: 0
   isShopTile: 0
-  isBattleTile: 1
+  isBattleTile: 0
 --- !u!114 &1582314947
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2741,7 +2741,7 @@ MonoBehaviour:
   damageAmount: 10
   isDamageTile: 0
   isShopTile: 0
-  isBattleTile: 1
+  isBattleTile: 0
 --- !u!1 &4291136521431954821
 GameObject:
   m_ObjectHideFlags: 0
@@ -3055,7 +3055,7 @@ MonoBehaviour:
   damageAmount: 10
   isDamageTile: 0
   isShopTile: 0
-  isBattleTile: 1
+  isBattleTile: 0
 --- !u!4 &7923706405146793037
 Transform:
   m_ObjectHideFlags: 0
@@ -3369,7 +3369,7 @@ MonoBehaviour:
   damageAmount: 10
   isDamageTile: 0
   isShopTile: 0
-  isBattleTile: 1
+  isBattleTile: 0
 --- !u!4 &8913133829942325560
 Transform:
   m_ObjectHideFlags: 0
