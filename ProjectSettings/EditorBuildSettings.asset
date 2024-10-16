@@ -11,6 +11,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/New Scene.unity
     guid: 05fbcf83e5ab3f84ab9de84f00f196ea
+  - enabled: 1
+    path: Assets/Scenes/MapTestLoadScene.unity
+    guid: e451e6618e5b44648b3c185b4671a956
+  - enabled: 1
+    path: Assets/Scenes/PVPScene.unity
+    guid: 67c57e9328e410249a010b90793992da
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

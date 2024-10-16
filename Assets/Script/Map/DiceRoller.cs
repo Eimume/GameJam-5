@@ -5,45 +5,45 @@ using System.Collections;
 
 public class DiceRoller : MonoBehaviour
 {
-    public Button rollDiceButton; // ปุ่มทอยลูกเต๋า
-    public TextMeshProUGUI diceResultText; // ข้อความแสดงผลลูกเต๋า
-    public PlayerMovement playerMovement; // สคริปต์การเคลื่อนที่ของผู้เล่น
-    public float rollDuration = 1.0f; // ระยะเวลาในการหมุน
-    public float rollSpeed = 0.05f; // ความเร็วในการเปลี่ยนตัวเลข
+    public Button rollDiceButton; // ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝูก๏ฟฝ๏ฟฝ๏ฟฝ
+    public TextMeshProUGUI diceResultText; // ๏ฟฝ๏ฟฝอค๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝสด๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝูก๏ฟฝ๏ฟฝ๏ฟฝ
+    public sumlong playerMovement; // สค๏ฟฝิป๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝอน๏ฟฝ๏ฟฝ๏ฟฝอง๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ
+    public float rollDuration = 1.0f; // ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝในก๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝุน
+    public float rollSpeed = 0.05f; // ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝในก๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝยน๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝลข
 
     private System.Random random = new System.Random();
 
     void Start()
     {
-        // เพิ่มฟังก์ชันที่เรียกเมื่อปุ่มถูกคลิก
+        // ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝัง๏ฟฝ๏ฟฝัน๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝยก๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝอป๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝูก๏ฟฝ๏ฟฝิก
         rollDiceButton.onClick.AddListener(RollDice);
     }
 
     void RollDice()
     {
-        int diceResult = random.Next(1, 7); // ทอยลูกเต๋าแบบ 6 หน้า
-        StartCoroutine(RollDiceAnimation(diceResult)); // เรียกใช้งานอนิเมชั่นการหมุน
+        int diceResult = random.Next(1, 7); // ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝูก๏ฟฝ๏ฟฝ๏ฟฝแบบ 6 หน๏ฟฝ๏ฟฝ
+        StartCoroutine(RollDiceAnimation(diceResult)); // ๏ฟฝ๏ฟฝ๏ฟฝยก๏ฟฝ๏ฟฝานอน๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ่นก๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝุน
     }
 
     IEnumerator RollDiceAnimation(int finalResult)
     {
         float elapsedTime = 0f;
 
-        // หมุนตัวเลขแบบวนไปเรื่อยๆ จนกว่าจะครบเวลาที่กำหนด
+        // ๏ฟฝ๏ฟฝุน๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝลขแบบวน๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝาจะครบ๏ฟฝ๏ฟฝ๏ฟฝาท๏ฟฝ๏ฟฝ๏ฟฝหน๏ฟฝ
         while (elapsedTime < rollDuration)
         {
-            // เปลี่ยนตัวเลข 1 ถึง 6 ไปเรื่อยๆ
+            // ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝยน๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝลข 1 ๏ฟฝึง 6 ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ
             int currentNumber = (int)Mathf.Ceil(elapsedTime / rollSpeed) % 6 + 1;
-            diceResultText.text = "Result: " + currentNumber.ToString(); // เพิ่มคำว่า "Result: " ระหว่างหมุน
+            diceResultText.text = "Result: " + currentNumber.ToString(); // ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ "Result: " ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝาง๏ฟฝ๏ฟฝุน
 
             elapsedTime += rollSpeed;
             yield return new WaitForSeconds(rollSpeed);
         }
 
-        // เมื่ออนิเมชั่นจบ ให้แสดงผลลัพธ์สุดท้าย
+        // ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝอน๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ่นจ๏ฟฝ ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝสด๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝัพ๏ฟฝ๏ฟฝ๏ฟฝุด๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ
         diceResultText.text = "Result : " + finalResult.ToString();
 
-        // ส่งค่าจำนวนก้าวที่ผู้เล่นต้องเดิน
-        StartCoroutine(playerMovement.MovePlayer(finalResult)); // เรียกใช้งาน MovePlayer ผ่าน Coroutine
+        // ๏ฟฝ่งค๏ฟฝาจำนวน๏ฟฝ๏ฟฝ๏ฟฝวท๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ่นต๏ฟฝอง๏ฟฝิน
+        StartCoroutine(playerMovement.MovePlayer(finalResult)); // ๏ฟฝ๏ฟฝ๏ฟฝยก๏ฟฝ๏ฟฝาน MovePlayer ๏ฟฝ๏ฟฝาน Coroutine
     }
 }

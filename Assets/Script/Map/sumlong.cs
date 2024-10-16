@@ -1,35 +1,35 @@
 using System.Collections;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class sumlong : MonoBehaviour
 {
-    public Transform[] tiles; // Array ของตำแหน่งของแต่ละช่องในเกม
-    public int currentTileIndex = 0; // ตำแหน่งเริ่มต้นของผู้เล่น
-    public float moveSpeed = 2f; // ความเร็วในการเคลื่อนที่ของผู้เล่น
+    public Transform[] tiles; // Array ๏ฟฝอง๏ฟฝ๏ฟฝ๏ฟฝหน่งของ๏ฟฝ๏ฟฝ๏ฟฝะช๏ฟฝอง๏ฟฝ๏ฟฝ๏ฟฝ
+    public int currentTileIndex = 0; // ๏ฟฝ๏ฟฝ๏ฟฝหน๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ้นของ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ
+    public float moveSpeed = 2f; // ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝในก๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝอน๏ฟฝ๏ฟฝ๏ฟฝอง๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ
 
-    public GameObject upModel; // โมเดลสำหรับการเคลื่อนที่ขึ้น
-    public GameObject downModel; // โมเดลสำหรับการเคลื่อนที่ลง
-    public GameObject leftModel; // โมเดลสำหรับการเคลื่อนที่ซ้าย
-    public GameObject rightModel; // โมเดลสำหรับการเคลื่อนที่ขวา
+    public GameObject upModel; // ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝับ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝอน๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ
+    public GameObject downModel; // ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝับ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝอน๏ฟฝ๏ฟฝ๏ฟฝลง
+    public GameObject leftModel; // ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝับ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝอน๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ
+    public GameObject rightModel; // ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝับ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝอน๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ
 
     private bool isMoving = false;
 
-    // อ้างอิงไปยังกล้องต่างๆ
-    public Camera gameCamera; // กล้องเกมหลัก
-    public Camera shopCamera; // กล้องร้านค้า
+    // ๏ฟฝ๏ฟฝาง๏ฟฝิง๏ฟฝ๏ฟฝัง๏ฟฝ๏ฟฝ๏ฟฝอง๏ฟฝ๏ฟฝาง๏ฟฝ
+    public Camera gameCamera; // ๏ฟฝ๏ฟฝ๏ฟฝอง๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝัก
+    public Camera shopCamera; // ๏ฟฝ๏ฟฝ๏ฟฝอง๏ฟฝ๏ฟฝาน๏ฟฝ๏ฟฝ๏ฟฝ
 
-    // อ้างอิงไปยัง UI ร้านค้า
+    // ๏ฟฝ๏ฟฝาง๏ฟฝิง๏ฟฝ๏ฟฝัง UI ๏ฟฝ๏ฟฝาน๏ฟฝ๏ฟฝ๏ฟฝ
     public GameObject shopUI;
 
     void Start()
     {
-        // ซ่อนโมเดลทั้งหมดตั้งแต่เริ่มต้น
+        // ๏ฟฝ๏ฟฝอน๏ฟฝ๏ฟฝ๏ฟฝลท๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ
         downModel.SetActive(false);
         leftModel.SetActive(false);
         rightModel.SetActive(false);
         upModel.SetActive(true);
 
-        // ตรวจสอบว่ากล้องและ UI ถูกตั้งค่าไว้
+        // ๏ฟฝ๏ฟฝวจ๏ฟฝอบ๏ฟฝ๏ฟฝาก๏ฟฝ๏ฟฝอง๏ฟฝ๏ฟฝ๏ฟฝ UI ๏ฟฝูก๏ฟฝ๏ฟฝ้งค๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ
         if (gameCamera != null)
             gameCamera.gameObject.SetActive(true);
         if (shopCamera != null)
@@ -46,29 +46,29 @@ public class PlayerMovement : MonoBehaviour
         {
             if (currentTileIndex + 1 >= tiles.Length)
             {
-                // ป้องกันไม่ให้เดินเกินขอบเขตของ tiles
+                // ๏ฟฝ๏ฟฝอง๏ฟฝัน๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝิน๏ฟฝิน๏ฟฝอบเขต๏ฟฝอง tiles
                 break;
             }
 
             Vector3 targetPosition = tiles[currentTileIndex + 1].position;
 
-            // เปลี่ยนโมเดลตามทิศทางการเคลื่อนที่ก่อนเริ่มเดิน
+            // ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝยน๏ฟฝ๏ฟฝ๏ฟฝลต๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝศทาง๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝอน๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝอน๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝิน
             ChangeModel();
 
-            // เคลื่อนที่ไปที่ช่องถัดไปทีละนิด
+            // ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝอน๏ฟฝ๏ฟฝ๏ฟฝไปท๏ฟฝ๏ฟฝ๏ฟฝอง๏ฟฝัดไปท๏ฟฝ๏ฟฝะนิด
             while (Vector3.Distance(transform.position, targetPosition) > 0.01f)
             {
                 transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
                 yield return null;
             }
 
-            currentTileIndex++; // เพิ่มตำแหน่งทีละ 1
+            currentTileIndex++; // ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝหน่งท๏ฟฝ๏ฟฝ๏ฟฝ 1
 
             steps--;
-            yield return new WaitForSeconds(0.2f); // หน่วงเวลาเล็กน้อยเพื่อให้ดูการเคลื่อนที่ชัดเจน
+            yield return new WaitForSeconds(0.2f); // หน๏ฟฝวง๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ็กน๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝูก๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝอน๏ฟฝ๏ฟฝ๏ฟฝัดเจน
         }
 
-        // ตรวจสอบช่องพิเศษหลังจากการเคลื่อนที่เสร็จสิ้น
+        // ๏ฟฝ๏ฟฝวจ๏ฟฝอบ๏ฟฝ๏ฟฝอง๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝัง๏ฟฝาก๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝอน๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ
         CheckSpecialTile();
 
         isMoving = false;
@@ -80,28 +80,28 @@ public class PlayerMovement : MonoBehaviour
         {
             if (currentTileIndex - 1 < 0)
             {
-                // ป้องกันไม่ให้ถอยกลับไปน้อยกว่า 0
+                // ๏ฟฝ๏ฟฝอง๏ฟฝัน๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝยก๏ฟฝับไปน๏ฟฝ๏ฟฝยก๏ฟฝ๏ฟฝ๏ฟฝ 0
                 break;
             }
 
             Vector3 targetPosition = tiles[currentTileIndex - 1].position;
 
-            // เปลี่ยนโมเดลตามทิศทางการเคลื่อนที่ก่อนเริ่มเดิน
+            // ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝยน๏ฟฝ๏ฟฝ๏ฟฝลต๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝศทาง๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝอน๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝอน๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝิน
             ChangeModel();
 
-            // เคลื่อนที่กลับไปที่ช่องถัดไปทีละนิด
+            // ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝอน๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝับไปท๏ฟฝ๏ฟฝ๏ฟฝอง๏ฟฝัดไปท๏ฟฝ๏ฟฝะนิด
             while (Vector3.Distance(transform.position, targetPosition) > 0.01f)
             {
                 transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
                 yield return null;
             }
 
-            currentTileIndex--; // ลดตำแหน่งทีละ 1
+            currentTileIndex--; // ลด๏ฟฝ๏ฟฝ๏ฟฝหน่งท๏ฟฝ๏ฟฝ๏ฟฝ 1
             steps--;
-            yield return new WaitForSeconds(0.2f); // หน่วงเวลาเล็กน้อยเพื่อให้ดูการถอยกลับชัดเจน
+            yield return new WaitForSeconds(0.2f); // หน๏ฟฝวง๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ็กน๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝูก๏ฟฝรถ๏ฟฝยก๏ฟฝับ๏ฟฝัดเจน
         }
 
-        // ตรวจสอบช่องพิเศษหลังจากการถอยกลับเสร็จสิ้น
+        // ๏ฟฝ๏ฟฝวจ๏ฟฝอบ๏ฟฝ๏ฟฝอง๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝัง๏ฟฝาก๏ฟฝ๏ฟฝรถ๏ฟฝยก๏ฟฝับ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ
         CheckSpecialTile();
 
         isMoving = false;
@@ -115,28 +115,28 @@ public class PlayerMovement : MonoBehaviour
             movementDirection = tiles[currentTileIndex + 1].position - (currentTileIndex > 0 ? tiles[currentTileIndex].position : transform.position);
         }
 
-        // ปิดโมเดลทั้งหมดก่อน
+        // ๏ฟฝิด๏ฟฝ๏ฟฝ๏ฟฝลท๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝอน
         upModel.SetActive(false);
         downModel.SetActive(false);
         leftModel.SetActive(false);
         rightModel.SetActive(false);
 
-        // ตรวจสอบทิศทางการเคลื่อนที่
+        // ๏ฟฝ๏ฟฝวจ๏ฟฝอบ๏ฟฝ๏ฟฝศทาง๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝอน๏ฟฝ๏ฟฝ๏ฟฝ
         if (movementDirection.y > 0)
         {
-            upModel.SetActive(true); // เคลื่อนที่ขึ้น
+            upModel.SetActive(true); // ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝอน๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ
         }
         else if (movementDirection.y < 0)
         {
-            downModel.SetActive(true); // เคลื่อนที่ลง
+            downModel.SetActive(true); // ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝอน๏ฟฝ๏ฟฝ๏ฟฝลง
         }
         else if (movementDirection.x > 0)
         {
-            rightModel.SetActive(true); // เคลื่อนที่ขวา
+            rightModel.SetActive(true); // ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝอน๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ
         }
         else if (movementDirection.x < 0)
         {
-            leftModel.SetActive(true); // เคลื่อนที่ซ้าย
+            leftModel.SetActive(true); // ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝอน๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ
         }
     }
 
@@ -151,7 +151,7 @@ public class PlayerMovement : MonoBehaviour
             }
             else if (specialTile.isDamageTile)
             {
-                // ลดเลือดผู้เล่น
+                // ลด๏ฟฝ๏ฟฝ๏ฟฝอด๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ
                 PlayerHealth playerHealth = GetComponent<PlayerHealth>();
                 if (playerHealth != null)
                 {
@@ -160,7 +160,7 @@ public class PlayerMovement : MonoBehaviour
             }
             else if (specialTile.isShopTile)
             {
-                // เปิดร้านค้า
+                // ๏ฟฝิด๏ฟฝ๏ฟฝาน๏ฟฝ๏ฟฝ๏ฟฝ
                 OpenShop();
             }
         }
@@ -179,8 +179,8 @@ public class PlayerMovement : MonoBehaviour
             shopUI.SetActive(true);
         }
 
-        // คุณสามารถเพิ่มฟังก์ชันอื่น ๆ ที่เกี่ยวข้องกับร้านค้าได้ที่นี่ เช่น การหยุดการเคลื่อนที่ หรือการแสดงข้อความ
-        Debug.Log("เปิดร้านค้า");
+        // ๏ฟฝุณ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝรถ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝัง๏ฟฝ๏ฟฝัน๏ฟฝ๏ฟฝ๏ฟฝ ๏ฟฝ ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝวข๏ฟฝอง๏ฟฝับ๏ฟฝ๏ฟฝาน๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ ๏ฟฝ๏ฟฝ ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝุด๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝอน๏ฟฝ๏ฟฝ๏ฟฝ ๏ฟฝ๏ฟฝ๏ฟฝอก๏ฟฝ๏ฟฝ๏ฟฝสด๏ฟฝ๏ฟฝ๏ฟฝอค๏ฟฝ๏ฟฝ๏ฟฝ
+        Debug.Log("๏ฟฝิด๏ฟฝ๏ฟฝาน๏ฟฝ๏ฟฝ๏ฟฝ");
     }
 
     public void CloseShop()
@@ -196,6 +196,6 @@ public class PlayerMovement : MonoBehaviour
             shopUI.SetActive(false);
         }
 
-        Debug.Log("ปิดร้านค้า");
+        Debug.Log("๏ฟฝิด๏ฟฝ๏ฟฝาน๏ฟฝ๏ฟฝ๏ฟฝ");
     }
 }
