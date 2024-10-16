@@ -6,6 +6,7 @@ public class PlayerSide : MonoBehaviour
 
     public Text potionCountText;  // Text สำหรับแสดงจำนวน Potion
     public Text playerHPText;  // อ้างอิงถึง Text UI สำหรับแสดง HP ของผู้เล่น
+    public Slider hpSlider;
     //public GameObject potionUI;  // หน้าต่าง UI ของ Potion
     public GameObject lostUI;
 
@@ -30,8 +31,15 @@ public class PlayerSide : MonoBehaviour
     {
         if (playerHPText != null)
         {
-            playerHPText.text = "Player HP: " + PlayerData.instance.currentHealth + " / " + PlayerData.instance.maxHealth;
+            playerHPText.text = PlayerData.instance.currentHealth + " / " + PlayerData.instance.maxHealth;
         }
+
+        if (hpSlider != null)
+        {
+            hpSlider.maxValue = PlayerData.instance.maxHealth;
+            hpSlider.value = PlayerData.instance.currentHealth;
+        }
+        
     }
 
     private void UpdatePotionCountUI()

@@ -11,6 +11,7 @@ public class EnemySide : MonoBehaviour
     public int specialAttackDamage = 20; // Damage for a special attack
 
     public Text enemyHPText;  // Reference to Enemy HP UI Text
+    public Slider hpSlider;
     public GameObject battleResultPanel;
     public Text battleResultText; // Reference to the text for displaying battle results
 
@@ -25,7 +26,13 @@ public class EnemySide : MonoBehaviour
     // Update the enemy's HP in the UI
     public void UpdateEnemyHPUI()
     {
-        enemyHPText.text = "Enemy HP: " + currentHp.ToString() + " / " + health.ToString();
+        enemyHPText.text = currentHp.ToString() + " / " + health.ToString();
+
+        if (hpSlider != null)
+        {
+            hpSlider.maxValue = health;
+            hpSlider.value = currentHp;
+        }
     }
 
     public void ChooseBlock(ActionType[] blockActions)
