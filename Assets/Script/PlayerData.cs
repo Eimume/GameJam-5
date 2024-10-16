@@ -9,6 +9,7 @@ public class PlayerData : MonoBehaviour
     public int maxHealth = 100;
     public int currentHealth;
     public int potionCount = 3;
+    public int currentPotionCount;
     public int normalAttackDamage = 10;
     public int specialAttackDamage = 20;
 
@@ -17,8 +18,6 @@ public class PlayerData : MonoBehaviour
 
     public int currentTileIndex;
     
-    /*public GameObject battleMessage; // Reference to the battle message UI element
-    public TextMeshProUGUI battleNotificationText;*/
 
     public event Action OnHealthChanged;
 
@@ -39,20 +38,10 @@ public class PlayerData : MonoBehaviour
     private void Start()
     {
         // Initialize player data
-        currentHealth = maxHealth;
+        ResetPlayerState();
 
-        lastPosition = Vector3.zero;
-        lastTileIndex = 0;
-
-        /*if (battleMessage != null)
-        {
-            battleMessage.SetActive(false);
-        }
-
-        if (battleNotificationText != null)
-        {
-            battleNotificationText.gameObject.SetActive(false);
-        }*/
+        /*lastPosition = Vector3.zero;
+        lastTileIndex = 0;*/
     }
 
     public void TakeDamage(int damage)
@@ -79,32 +68,14 @@ public class PlayerData : MonoBehaviour
         lastTileIndex = tileIndex;
         Debug.Log("Position saved: " + position + ", Tile Index: " + tileIndex);
     }
-
-    /*public void ShowBattleMessage(string message)
+    public void ResetPlayerState()
     {
-        if (battleMessage != null)
-        {
-            battleMessage.SetActive(true);
-        }
+        // Reset the player state to its initial values
+        currentHealth = maxHealth;
+        currentPotionCount = potionCount;
 
-        if (battleNotificationText != null)
-        {
-            battleNotificationText.text = message;
-            battleNotificationText.gameObject.SetActive(true);
-        }
+        lastPosition = Vector3.zero;
+        lastTileIndex = 0;
+        // Reset other attributes if needed
     }
-
-    // Method to hide the battle message and notification
-    public void HideBattleMessage()
-    {
-        if (battleMessage != null)
-        {
-            battleMessage.SetActive(false);
-        }
-
-        if (battleNotificationText != null)
-        {
-            battleNotificationText.gameObject.SetActive(false);
-        }
-    }*/
 }

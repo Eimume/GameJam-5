@@ -38,7 +38,7 @@ public class PlayerSide : MonoBehaviour
     {
         if (potionCountText != null)
         {
-            potionCountText.text = "Potions: " + PlayerData.instance.potionCount;
+            potionCountText.text = "Potions: " + PlayerData.instance.currentPotionCount;
         }
     }
 
@@ -74,10 +74,10 @@ public class PlayerSide : MonoBehaviour
 
     public void Heal(int healAmount)
     {
-        if (PlayerData.instance.potionCount > 0 && PlayerData.instance.currentHealth < PlayerData.instance.maxHealth)
+        if (PlayerData.instance.currentPotionCount > 0 && PlayerData.instance.currentHealth < PlayerData.instance.maxHealth)
         {
             PlayerData.instance.Heal(healAmount);
-            PlayerData.instance.potionCount--;
+            PlayerData.instance.currentPotionCount--;
 
            // potionCount--;  // ลดจำนวน Potion ลง
             Debug.Log("Player healed by " + healAmount + ". Health: " + PlayerData.instance.currentHealth);
@@ -88,7 +88,7 @@ public class PlayerSide : MonoBehaviour
             UpdatePotionCountUI();
             pvpManager.UpdateHPUI();
 
-            if (PlayerData.instance.potionCount <= 0)
+            if (PlayerData.instance.currentPotionCount <= 0)
             {
                 //potionUI.SetActive(false);
                 Debug.Log("No potions left!");
