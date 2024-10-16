@@ -6,10 +6,10 @@ using System.Collections;
 public class SceneController : MonoBehaviour
 {
     public static SceneController instance;
-    public GameObject BattleMessage;
-    public TextMeshProUGUI battleNotificationText;
+    //public GameObject BattleMessage;
+    //public TextMeshProUGUI battleNotificationText;
     public DiceRoller diceRoller; // Reference to the DiceRoller script
-    public sumlong player;
+    //public sumlong player;
     private Vector3 savedPlayerPosition;
     private int savedTileIndex;
 
@@ -29,12 +29,17 @@ public class SceneController : MonoBehaviour
 
     private void Start()
     {
+        //PlayerData.instance?.HideBattleMessage();
         // Find the DiceRoller script in the scene
-        BattleMessage.SetActive(false);
+        /*if (BattleMessage != null)
+        {
+            BattleMessage.SetActive(false);
+        }
+
         if (battleNotificationText != null)
         {
             battleNotificationText.gameObject.SetActive(false); // Hide the notification text initially
-        }
+        }*/
     }
     public void SavePlayerState(Vector3 position, int tileIndex)
     {
@@ -43,7 +48,6 @@ public class SceneController : MonoBehaviour
         savedTileIndex = tileIndex;
     }
 
-
     public void LoadBattleScene()
     {
         if (diceRoller != null)
@@ -51,30 +55,34 @@ public class SceneController : MonoBehaviour
             diceRoller.HideDiceUI();
         }
         // Start the coroutine to display messages before transitioning
-        StartCoroutine(ShowBattleMessages());
+        //StartCoroutine(ShowBattleMessages());
+        StartCoroutine(LoadBattle());
     }
 
-    private IEnumerator ShowBattleMessages()
+    private IEnumerator LoadBattle()
     {
-        BattleMessage.SetActive(true);
-        // Display the first message
-        battleNotificationText.text = "You have entered a Battle Tile!";
-        battleNotificationText.gameObject.SetActive(true); // Make sure the text is visible
-        yield return new WaitForSeconds(2f); // Wait for 3 seconds
-
-        // Display the next message
-        battleNotificationText.text = "Prepare to Fight!";
-        yield return new WaitForSeconds(3f); // Wait for another 3 seconds
-
-        // Hide the text and load the battle scene
-        battleNotificationText.gameObject.SetActive(false);
+        yield return new WaitForSeconds(2f);
         SceneManager.LoadScene("PVPScene");
     }
+    
+
+    /*private IEnumerator ShowBattleMessages()
+    {
+        PlayerData.instance?.ShowBattleMessage("You have entered a Battle Tile!");
+        yield return new WaitForSeconds(2f);
+
+        PlayerData.instance?.ShowBattleMessage("Prepare to Fight!");
+        yield return new WaitForSeconds(3f);
+
+        // Hide the text and load the battle scene
+        PlayerData.instance?.HideBattleMessage();
+        SceneManager.LoadScene("PVPScene");
+    }*/
 
 
     public void LoadOverworldScene()
     {
-        SceneManager.LoadScene("MapTestLoadScene");
+        SceneManager.LoadScene("Map");
         StartCoroutine(RestorePlayerStateAfterSceneLoad());
     }
 
@@ -83,11 +91,14 @@ public class SceneController : MonoBehaviour
         // Wait for the scene to load completely
         yield return new WaitForEndOfFrame();
 
+        sumlong player = FindObjectOfType<sumlong>();
         // Find the player and restore their position and tile index
         if (player != null)
         {
             player.RestorePlayerState(savedPlayerPosition, savedTileIndex);
         }
+
+        //PlayerData.instance?.HideBattleMessage();
 
         // Show the dice UI again if needed
         if (diceRoller != null)

@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using TMPro;
 
 public class PlayerData : MonoBehaviour
 {
@@ -10,6 +11,14 @@ public class PlayerData : MonoBehaviour
     public int potionCount = 3;
     public int normalAttackDamage = 10;
     public int specialAttackDamage = 20;
+
+    public Vector3 lastPosition; // Store the last position of the player
+    public int lastTileIndex; // Store the last tile index of the player
+
+    public int currentTileIndex;
+    
+    /*public GameObject battleMessage; // Reference to the battle message UI element
+    public TextMeshProUGUI battleNotificationText;*/
 
     public event Action OnHealthChanged;
 
@@ -31,6 +40,19 @@ public class PlayerData : MonoBehaviour
     {
         // Initialize player data
         currentHealth = maxHealth;
+
+        lastPosition = Vector3.zero;
+        lastTileIndex = 0;
+
+        /*if (battleMessage != null)
+        {
+            battleMessage.SetActive(false);
+        }
+
+        if (battleNotificationText != null)
+        {
+            battleNotificationText.gameObject.SetActive(false);
+        }*/
     }
 
     public void TakeDamage(int damage)
@@ -50,4 +72,39 @@ public class PlayerData : MonoBehaviour
         OnHealthChanged?.Invoke();
         Debug.Log("Player healed, current health: " + currentHealth);
     }
+
+    public void SavePlayerPosition(Vector3 position, int tileIndex)
+    {
+        lastPosition = position;
+        lastTileIndex = tileIndex;
+        Debug.Log("Position saved: " + position + ", Tile Index: " + tileIndex);
+    }
+
+    /*public void ShowBattleMessage(string message)
+    {
+        if (battleMessage != null)
+        {
+            battleMessage.SetActive(true);
+        }
+
+        if (battleNotificationText != null)
+        {
+            battleNotificationText.text = message;
+            battleNotificationText.gameObject.SetActive(true);
+        }
+    }
+
+    // Method to hide the battle message and notification
+    public void HideBattleMessage()
+    {
+        if (battleMessage != null)
+        {
+            battleMessage.SetActive(false);
+        }
+
+        if (battleNotificationText != null)
+        {
+            battleNotificationText.gameObject.SetActive(false);
+        }
+    }*/
 }

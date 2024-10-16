@@ -50,6 +50,7 @@ public class ButtonController : MonoBehaviour
         {
             button.SetActive(true);
         }
+        inventoryUI.SetActive(true);
         potionCountTextUI.SetActive(true);
 
         exitButton.SetActive(true);

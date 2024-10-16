@@ -15,6 +15,19 @@ public class sumlong : MonoBehaviour
     private void Start()
     {
         //animator = GetComponent<Animator>();
+        if (PlayerData.instance != null && PlayerData.instance.lastPosition != Vector3.zero)
+        {
+            RestorePlayerState(PlayerData.instance.lastPosition, PlayerData.instance.lastTileIndex);
+        }
+    }
+
+    private void Update()
+    {
+        // อัปเดตตำแหน่งของผู้เล่นใน PlayerData ทุกเฟรม
+        if (PlayerData.instance != null)
+        {
+            PlayerData.instance.SavePlayerPosition(transform.position, currentTileIndex);
+        }
     }
 
     public void MovePlayer(int steps)
@@ -38,8 +51,6 @@ public class sumlong : MonoBehaviour
             }
 
             Vector3 targetPosition = tiles[currentTileIndex + 1].position;
-
-            // Determine the direction for animation
             SetAnimationDirection(targetPosition);
 
             // Move towards the target tile
@@ -57,8 +68,6 @@ public class sumlong : MonoBehaviour
         }
 
         ResetToIdle();
-
-        // Check for any special tile effects after movement
         CheckSpecialTile();
 
         isMoving = false;
@@ -104,8 +113,6 @@ public class sumlong : MonoBehaviour
         }
 
         ResetToIdle();
-
-        // Check for any special tile effects after movement
         CheckSpecialTile();
 
         isMoving = false;
@@ -156,7 +163,7 @@ public class sumlong : MonoBehaviour
         animator.SetBool("isMovingLeft", false);
         animator.SetBool("isMovingUp", false);
         animator.SetBool("isMovingDown", false);
-        animator.SetTrigger("Idle"); // Trigger idle animation
+        animator.SetTrigger("idle"); // Trigger idle animation
     }
     
 
@@ -178,9 +185,11 @@ public class sumlong : MonoBehaviour
             {
                 OpenShop();
             }
-            else if (specialTile.isBattleTile)
+            else if (specialTile.isBattleTile && specialTile.IsBattleTileActive())
             {
-                SceneController.instance.SavePlayerState(transform.position, currentTileIndex);
+                PlayerData.instance.SavePlayerPosition(transform.position, currentTileIndex);
+                //SceneController.instance.SavePlayerState(transform.position, currentTileIndex);
+                specialTile.DeactivateBattleTile();
                 SceneController.instance.LoadBattleScene();
             }
         }

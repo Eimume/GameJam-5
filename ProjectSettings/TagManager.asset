@@ -7,7 +7,6 @@ TagManager:
   - SpecialTile
   - GUBDAK
   - DamageBlock
-  tags: []
   layers:
   - Default
   - TransparentFX
@@ -45,6 +44,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Ground
+    uniqueID: 76046831
+    locked: 0
+  - name: Top
+    uniqueID: 2348091207
+    locked: 0
   - name: BackGround UI
     uniqueID: 4137639189
     locked: 0
@@ -53,11 +58,6 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 4195942973
-  - name: Ground
-    uniqueID: 76046831
-    locked: 0
-  - name: Top
-    uniqueID: 2348091207
     locked: 0
   m_RenderingLayers:
   - Default

@@ -1,0 +1,25 @@
+using UnityEngine;
+
+public class SpecialTile : MonoBehaviour
+{
+    public bool isMoveBackwardTile = false; 
+    public int moveBackwardSteps = 3; 
+    
+    public int damageAmount = 10;
+
+    public bool isDamageTile = false; 
+    public bool isShopTile = false; 
+    public bool isBattleTile = false;
+    private bool isBattleTileActive = true; // Tracks if the battle tile is active
+
+    public void DeactivateBattleTile()
+    {
+        isBattleTileActive = false;
+    }
+
+    // Method to check if the battle tile is active
+    public bool IsBattleTileActive()
+    {
+        return isBattleTile && isBattleTileActive;
+    }
+}
