@@ -11,14 +11,14 @@ public class EnemySide : MonoBehaviour
     public int specialAttackDamage = 20; // Damage for a special attack
 
     public Text enemyHPText;  // Reference to Enemy HP UI Text
-    public GameObject battleResultPanel;
+    public GameObject WinUI;
     public Text battleResultText; // Reference to the text for displaying battle results
 
     public void Start()
     {
         currentHp = health;
         UpdateEnemyHPUI();  // Initial update of the Enemy HP UI
-        battleResultPanel.SetActive(false);
+        WinUI.SetActive(false);
         battleResultText.gameObject.SetActive(false); // Initially hide the result text
     }
 
@@ -57,7 +57,7 @@ public class EnemySide : MonoBehaviour
 
     private IEnumerator HandleEnemyDefeat()
     {
-        battleResultPanel.SetActive(true);
+        WinUI.SetActive(true);
         // Display "Player won!!"
         battleResultText.gameObject.SetActive(true);
         battleResultText.text = "Player won!!";

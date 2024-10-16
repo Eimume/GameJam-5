@@ -15,8 +15,8 @@ public class ButtonController : MonoBehaviour
     public GameObject[] actionOptions;
     public GameObject[] inventoryOptions;
 
-    public GameObject replayButton; // Replay Button GameObject
-    public GameObject lostUI;
+    //public GameObject replayButton; // Replay Button GameObject
+    //public GameObject lostUI;
 
     public PlayerSide playerSide;
     public GameObject potionCountTextUI;
@@ -31,8 +31,8 @@ public class ButtonController : MonoBehaviour
         //LoseUI.SetActive(false);
 
         potionCountTextUI.SetActive(false);
-        lostUI.SetActive(false); // Hide the Lost UI at the start
-        replayButton.SetActive(false); // Hide the replay button at the start
+        //lostUI.SetActive(false); // Hide the Lost UI at the start
+        //replayButton.SetActive(false); // Hide the replay button at the start
 
         foreach (GameObject button in inventoryOptions)
         {
@@ -106,7 +106,7 @@ public class ButtonController : MonoBehaviour
         OnExitButtonClick();  // ปิดเมนูหลังจากใช้ไอเท็ม
     }
 
-    public void ShowLostUI()
+    /*public void ShowLostUI()
     {
         if (lostUI != null)
         {
@@ -127,5 +127,5 @@ public class ButtonController : MonoBehaviour
     public void OnReplayButtonClick()
     {
         SceneController.instance.ResetAndLoadMapScene();
-    }
+    }*/
 }
