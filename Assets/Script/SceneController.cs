@@ -121,4 +121,10 @@ public class SceneController : MonoBehaviour
             exitButton.SetActive(true);
         }
     }
+
+    public void OnExitButtonClick()
+    {
+        // Load the MainMenu scene
+        SceneManager.LoadScene("Menu");
+    }
 }
