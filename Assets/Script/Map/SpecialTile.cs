@@ -11,7 +11,7 @@ public class SpecialTile : MonoBehaviour
     public bool isShopTile = false; 
     public bool isBattleTile = false;
     public bool isBoss = false;
-    private bool isBossTileActive = true;
+    //private bool isBossTileActive = true;
     private bool isBattleTileActive = true; // Tracks if the battle tile is active
 
     public void DeactivateBattleTile()
@@ -25,7 +25,12 @@ public class SpecialTile : MonoBehaviour
         return isBattleTile && isBattleTileActive;
     }
 
-    public void DeactivateBossTile()
+    public bool IsBossTile()
+    {
+        return isBoss;
+    }
+
+    /*public void DeactivateBossTile()
     {
         isBossTileActive = false;
     }
@@ -34,5 +39,5 @@ public class SpecialTile : MonoBehaviour
     public bool IsBossTileActive()
     {
         return isBoss && isBossTileActive;
-    }
+    }*/
 }

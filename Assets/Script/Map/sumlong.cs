@@ -185,19 +185,25 @@ public class sumlong : MonoBehaviour
             {
                 OpenShop();
             }
+            else if (specialTile.IsBossTile())
+            {
+                // Save the player's state before loading the boss scene
+                PlayerData.instance?.SavePlayerPosition(transform.position, currentTileIndex);
+                SceneController.instance.LoadBossScene();
+            }
             else if (specialTile.isBattleTile && specialTile.IsBattleTileActive())
             {
                 PlayerData.instance.SavePlayerPosition(transform.position, currentTileIndex);
                 //SceneController.instance.SavePlayerState(transform.position, currentTileIndex);
                 specialTile.DeactivateBattleTile();
                 SceneController.instance.LoadRandomBattleScene();
-            }
+            }/*
             else if (!specialTile.isBoss && specialTile.IsBossTileActive())
             {
                 PlayerData.instance.SavePlayerPosition(transform.position, currentTileIndex);
                 //SceneController.instance.SavePlayerState(transform.position, currentTileIndex);
                 specialTile.DeactivateBossTile();
-            }
+            }*/
         }
     }
 

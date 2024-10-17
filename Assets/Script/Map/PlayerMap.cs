@@ -7,7 +7,7 @@ public class PlayerMap : MonoBehaviour
     private PlayerData playerData;
 
     // UI components for displaying HP
-    public TextMeshProUGUI hpText; // For TextMeshPro usage
+    public Text hpText; // For TextMeshPro usage
     public Slider hpSlider; // For Slider usage
 
     private void Start()
