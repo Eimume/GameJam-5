@@ -197,13 +197,8 @@ public class sumlong : MonoBehaviour
                 //SceneController.instance.SavePlayerState(transform.position, currentTileIndex);
                 specialTile.DeactivateBattleTile();
                 SceneController.instance.LoadRandomBattleScene();
-            }/*
-            else if (!specialTile.isBoss && specialTile.IsBossTileActive())
-            {
-                PlayerData.instance.SavePlayerPosition(transform.position, currentTileIndex);
-                //SceneController.instance.SavePlayerState(transform.position, currentTileIndex);
-                specialTile.DeactivateBossTile();
-            }*/
+            }
+
         }
     }
 
