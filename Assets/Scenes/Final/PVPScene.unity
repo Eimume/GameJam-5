@@ -118,6 +118,135 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &1182451686
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1182451688}
+  - component: {fileID: 1182451687}
+  m_Layer: 0
+  m_Name: Sound
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!82 &1182451687
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1182451686}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 722ab1d3285aaba4e86df51b5f73cea9, type: 3}
+  m_Resource: {fileID: 8300000, guid: 722ab1d3285aaba4e86df51b5f73cea9, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 0.5
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!4 &1182451688
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1182451686}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 71.47624, y: -6.8479347, z: 2.6881864}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &703371571986716829 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 609925139066448964, guid: 28762ad1b2feb3e4eb249032dda785e4, type: 3}
@@ -379,7 +508,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2918298216224878128, guid: 52d0ff7829e808647b5fb891696f8a10, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3151998186880439931, guid: 52d0ff7829e808647b5fb891696f8a10, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -552,11 +681,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4357965367622610517, guid: 28762ad1b2feb3e4eb249032dda785e4, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4357965367622610517, guid: 28762ad1b2feb3e4eb249032dda785e4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -205.0894
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4455470224538834262, guid: 28762ad1b2feb3e4eb249032dda785e4, type: 3}
       propertyPath: m_Name
@@ -652,11 +781,11 @@ PrefabInstance:
       objectReference: {fileID: 8495903596873635593}
     - target: {fileID: 4790971699096638673, guid: 28762ad1b2feb3e4eb249032dda785e4, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4790971699096638673, guid: 28762ad1b2feb3e4eb249032dda785e4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -200.68726
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4863988303886701465, guid: 28762ad1b2feb3e4eb249032dda785e4, type: 3}
       propertyPath: playerSide
@@ -664,19 +793,19 @@ PrefabInstance:
       objectReference: {fileID: 8495903596873635593}
     - target: {fileID: 5998759698137064222, guid: 28762ad1b2feb3e4eb249032dda785e4, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5998759698137064222, guid: 28762ad1b2feb3e4eb249032dda785e4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -200.68726
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6464211769597786054, guid: 28762ad1b2feb3e4eb249032dda785e4, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6464211769597786054, guid: 28762ad1b2feb3e4eb249032dda785e4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -205.0894
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -901,3 +1030,4 @@ SceneRoots:
   - {fileID: 7356527301502032363}
   - {fileID: 2952076360673818359}
   - {fileID: 961887400888394506}
+  - {fileID: 1182451688}
