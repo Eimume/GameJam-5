@@ -41,14 +41,14 @@ public class DiceRoller : MonoBehaviour
         {
             // ����¹����Ţ 1 �֧ 6 ��������
             int currentNumber = (int)Mathf.Ceil(elapsedTime / rollSpeed) % 6 + 1;
-            diceResultText.text = "Result: " + currentNumber.ToString(); // ��������� "Result: " �����ҧ��ع
+            diceResultText.text = currentNumber.ToString(); // ��������� "Result: " �����ҧ��ع
 
             elapsedTime += rollSpeed;
             yield return new WaitForSeconds(rollSpeed);
         }
 
         // �����͹�����蹨� ����ʴ����Ѿ���ش����
-        diceResultText.text = "Result : " + finalResult.ToString();
+        diceResultText.text =  finalResult.ToString();
 
         // �觤�Ҩӹǹ���Ƿ������蹵�ͧ�Թ
         //StartCoroutine(playerMovement.MovePlayer(finalResult)); // ���¡��ҹ MovePlayer ��ҹ Coroutine

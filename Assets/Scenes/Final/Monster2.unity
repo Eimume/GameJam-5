@@ -938,6 +938,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1090897607}
     - target: {fileID: 4522925162544587219, guid: 73592f213c2ae9840acf1c5560c4fc32, type: 3}
+      propertyPath: health
+      value: 75
+      objectReference: {fileID: 0}
+    - target: {fileID: 4522925162544587219, guid: 73592f213c2ae9840acf1c5560c4fc32, type: 3}
       propertyPath: hpSlider
       value: 
       objectReference: {fileID: 290665695}
@@ -949,6 +953,14 @@ PrefabInstance:
       propertyPath: battleResultText
       value: 
       objectReference: {fileID: 75046472}
+    - target: {fileID: 4522925162544587219, guid: 73592f213c2ae9840acf1c5560c4fc32, type: 3}
+      propertyPath: normalAttackDamage
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4522925162544587219, guid: 73592f213c2ae9840acf1c5560c4fc32, type: 3}
+      propertyPath: specialAttackDamage
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 5896574711627561463, guid: 73592f213c2ae9840acf1c5560c4fc32, type: 3}
       propertyPath: m_LocalPosition.x
       value: 8.1945

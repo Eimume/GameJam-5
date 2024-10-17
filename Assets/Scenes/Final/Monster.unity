@@ -242,7 +242,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4357965367622610517, guid: 28762ad1b2feb3e4eb249032dda785e4, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4357965367622610517, guid: 28762ad1b2feb3e4eb249032dda785e4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -342,7 +342,7 @@ PrefabInstance:
       objectReference: {fileID: 798258368}
     - target: {fileID: 4790971699096638673, guid: 28762ad1b2feb3e4eb249032dda785e4, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4790971699096638673, guid: 28762ad1b2feb3e4eb249032dda785e4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -354,7 +354,7 @@ PrefabInstance:
       objectReference: {fileID: 798258368}
     - target: {fileID: 5998759698137064222, guid: 28762ad1b2feb3e4eb249032dda785e4, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5998759698137064222, guid: 28762ad1b2feb3e4eb249032dda785e4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -362,7 +362,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6464211769597786054, guid: 28762ad1b2feb3e4eb249032dda785e4, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6464211769597786054, guid: 28762ad1b2feb3e4eb249032dda785e4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -971,6 +971,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 418050477021431403}
     - target: {fileID: 6087464614942381460, guid: 453b4c88b50ec264fa541588cc472caa, type: 3}
+      propertyPath: health
+      value: 125
+      objectReference: {fileID: 0}
+    - target: {fileID: 6087464614942381460, guid: 453b4c88b50ec264fa541588cc472caa, type: 3}
       propertyPath: hpSlider
       value: 
       objectReference: {fileID: 646132896}
@@ -982,6 +986,14 @@ PrefabInstance:
       propertyPath: battleResultText
       value: 
       objectReference: {fileID: 6346217671320249996}
+    - target: {fileID: 6087464614942381460, guid: 453b4c88b50ec264fa541588cc472caa, type: 3}
+      propertyPath: normalAttackDamage
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6087464614942381460, guid: 453b4c88b50ec264fa541588cc472caa, type: 3}
+      propertyPath: specialAttackDamage
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 7822340776756536862, guid: 453b4c88b50ec264fa541588cc472caa, type: 3}
       propertyPath: m_Name
       value: Enemy Side
