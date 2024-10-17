@@ -379,7 +379,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2918298216224878128, guid: 52d0ff7829e808647b5fb891696f8a10, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3151998186880439931, guid: 52d0ff7829e808647b5fb891696f8a10, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -552,7 +552,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4357965367622610517, guid: 28762ad1b2feb3e4eb249032dda785e4, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4357965367622610517, guid: 28762ad1b2feb3e4eb249032dda785e4, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -205.0894
       objectReference: {fileID: 0}
     - target: {fileID: 4455470224538834262, guid: 28762ad1b2feb3e4eb249032dda785e4, type: 3}
       propertyPath: m_Name
@@ -648,7 +652,11 @@ PrefabInstance:
       objectReference: {fileID: 8495903596873635593}
     - target: {fileID: 4790971699096638673, guid: 28762ad1b2feb3e4eb249032dda785e4, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4790971699096638673, guid: 28762ad1b2feb3e4eb249032dda785e4, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -200.68726
       objectReference: {fileID: 0}
     - target: {fileID: 4863988303886701465, guid: 28762ad1b2feb3e4eb249032dda785e4, type: 3}
       propertyPath: playerSide
@@ -656,11 +664,19 @@ PrefabInstance:
       objectReference: {fileID: 8495903596873635593}
     - target: {fileID: 5998759698137064222, guid: 28762ad1b2feb3e4eb249032dda785e4, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5998759698137064222, guid: 28762ad1b2feb3e4eb249032dda785e4, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -200.68726
       objectReference: {fileID: 0}
     - target: {fileID: 6464211769597786054, guid: 28762ad1b2feb3e4eb249032dda785e4, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6464211769597786054, guid: 28762ad1b2feb3e4eb249032dda785e4, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -205.0894
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

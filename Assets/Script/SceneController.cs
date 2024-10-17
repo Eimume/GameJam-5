@@ -6,12 +6,11 @@ using System.Collections;
 public class SceneController : MonoBehaviour
 {
     public static SceneController instance;
-    //public GameObject BattleMessage;
-    //public TextMeshProUGUI battleNotificationText;
-    public DiceRoller diceRoller; // Reference to the DiceRoller script
-    //public sumlong player;
+    public DiceRoller diceRoller;
     private Vector3 savedPlayerPosition;
     private int savedTileIndex;
+    public GameObject exitButton;
+    public GameObject winMessageUI;
 
     private void Awake()
     {
@@ -26,6 +25,15 @@ public class SceneController : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    private void Start()
+    {
+        // Hide the win message UI initially
+        if (winMessageUI != null)
+        {
+            winMessageUI.SetActive(false);
+            exitButton.SetActive(false);
+        }
+    }
 
     public void SavePlayerState(Vector3 position, int tileIndex)
     {
@@ -34,26 +42,42 @@ public class SceneController : MonoBehaviour
         savedTileIndex = tileIndex;
     }
 
-    public void LoadBattleScene()
+    public void LoadBossScene()
     {
         if (diceRoller != null)
         {
             diceRoller.HideDiceUI();
         }
-        // Start the coroutine to display messages before transitioning
-        //StartCoroutine(ShowBattleMessages());
-        StartCoroutine(LoadBattle());
+
+        StartCoroutine(LoadBoss());
+    }
+    public void LoadRandomBattleScene()
+    {
+        if (diceRoller != null)
+        {
+            diceRoller.HideDiceUI();
+        }
+        Debug.Log("Load Battle scene");
+        string[] battleScenes = { "Monster", "Monster2" };
+        string chosenScene = battleScenes[Random.Range(0, battleScenes.Length)];
+        StartCoroutine(LoadBattle(chosenScene));
     }
 
-    private IEnumerator LoadBattle()
+    private IEnumerator LoadBoss()
     {
         yield return new WaitForSeconds(2f);
         SceneManager.LoadScene("PVPScene");
     }
 
+    private IEnumerator LoadBattle(string sceneName)
+    {
+        yield return new WaitForSeconds(2f);
+        SceneManager.LoadScene(sceneName);
+    }
+
     public void LoadOverworldScene()
     {
-        SceneManager.LoadScene("Map");
+        SceneManager.LoadScene("map");
         StartCoroutine(RestorePlayerStateAfterSceneLoad());
     }
 
@@ -69,7 +93,10 @@ public class SceneController : MonoBehaviour
             player.RestorePlayerState(savedPlayerPosition, savedTileIndex);
         }
 
-        //PlayerData.instance?.HideBattleMessage();
+        if (PlayerData.instance != null && PlayerData.instance.hasWonBossBattle)
+        {
+            ShowWinMessage();
+        }
 
         // Show the dice UI again if needed
         if (diceRoller != null)
@@ -83,6 +110,15 @@ public class SceneController : MonoBehaviour
         // Reset the player's state
         PlayerData.instance.ResetPlayerState();
         // Load the "Map" scene
-        SceneManager.LoadScene("Map");
+        SceneManager.LoadScene("map");
+    }
+
+    private void ShowWinMessage()
+    {
+        if (winMessageUI != null)
+        {
+            winMessageUI.SetActive(true);
+            exitButton.SetActive(true);
+        }
     }
 }

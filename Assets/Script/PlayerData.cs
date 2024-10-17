@@ -5,7 +5,7 @@ using TMPro;
 public class PlayerData : MonoBehaviour
 {
     public static PlayerData instance;
-
+    public bool hasWonBossBattle = false;
     public int maxHealth = 100;
     public int currentHealth;
     public int potionCount = 3;
@@ -76,6 +76,13 @@ public class PlayerData : MonoBehaviour
 
         lastPosition = Vector3.zero;
         lastTileIndex = 0;
+        hasWonBossBattle = false;
         // Reset other attributes if needed
     }
+
+    public void MarkBossBattleAsWon()
+    {
+        hasWonBossBattle = true;
+    }
+
 }

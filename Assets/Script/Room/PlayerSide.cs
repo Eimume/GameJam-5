@@ -66,12 +66,12 @@ public class PlayerSide : MonoBehaviour
 
         if (action.actionName == "Normal Attack")
         {
-            playerAnimator.SetTrigger("NormalAttack");
+            playerAnimator.SetTrigger("attack");
             Debug.Log("Playing Normal Attack animation.");
         }
         else if (action.actionName == "Special Attack")
         {
-            playerAnimator.SetTrigger("SpecialAttack");
+            playerAnimator.SetTrigger("spAttack");
             Debug.Log("Playing Special Attack animation.");
         }
         // Add more animations based on other actions if necessary
