@@ -402,6 +402,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6964245149316383769, guid: e3f96df08d1be7145b45afbfc52a3f5c, type: 3}
   m_PrefabInstance: {fileID: 1674570171997937931}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &753428804 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8160356652438482775, guid: 07940832747868a46b320b69b3199675, type: 3}
+  m_PrefabInstance: {fileID: 1082121559}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &827155865
 GameObject:
   m_ObjectHideFlags: 0
@@ -553,6 +564,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6262034d41f3310478a72edb69130a1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &905797152 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3055052525508048547, guid: ef5021cff8eab2647ba03f3ab257434c, type: 3}
+  m_PrefabInstance: {fileID: 1232809436}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &1028705886
@@ -718,7 +740,7 @@ PrefabInstance:
     - target: {fileID: 6795549650450126963, guid: 8f82309e441463f46ac6090c318285ef, type: 3}
       propertyPath: hpText
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 753428804}
     - target: {fileID: 6795549650450126963, guid: 8f82309e441463f46ac6090c318285ef, type: 3}
       propertyPath: hpSlider
       value: 
@@ -891,6 +913,10 @@ PrefabInstance:
     - target: {fileID: 3558056644605936129, guid: 07940832747868a46b320b69b3199675, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8160356652438482775, guid: 07940832747868a46b320b69b3199675, type: 3}
+      propertyPath: m_Text
+      value: '   :'
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1139,7 +1165,7 @@ PrefabInstance:
     - target: {fileID: 9135374372869947452, guid: 5a5b282146df49d48b79ebeee55f2c0a, type: 3}
       propertyPath: diceResultText
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 905797152}
     - target: {fileID: 9135374372869947452, guid: 5a5b282146df49d48b79ebeee55f2c0a, type: 3}
       propertyPath: playerMovement
       value: 

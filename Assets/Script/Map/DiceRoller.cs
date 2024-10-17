@@ -6,7 +6,7 @@ using System.Collections;
 public class DiceRoller : MonoBehaviour
 {
     public Button rollDiceButton; // ��������١���
-    public TextMeshProUGUI diceResultText; // ��ͤ����ʴ����١���
+    public Text diceResultText; // ��ͤ����ʴ����١���
     public sumlong playerMovement; // ʤ�Ի��������͹���ͧ������
     public float rollDuration = 1.0f; // ��������㹡����ع
     public float rollSpeed = 0.05f; // ��������㹡������¹����Ţ

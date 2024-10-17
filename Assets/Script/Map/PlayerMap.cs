@@ -40,7 +40,7 @@ public class PlayerMap : MonoBehaviour
     {
         if (hpText != null)
         {
-            hpText.text = $"     : {playerData.currentHealth} / {playerData.maxHealth}";
+            hpText.text = $"   : {playerData.currentHealth} / {playerData.maxHealth}";
         }
 
         if (hpSlider != null)
