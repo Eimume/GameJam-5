@@ -68,12 +68,12 @@ public class EnemySide : MonoBehaviour
         WinUI.SetActive(true);
         // Display "Player won!!"
         battleResultText.gameObject.SetActive(true);
-        battleResultText.text = "Player won!!";
+        battleResultText.text = "You won!!";
         yield return new WaitForSeconds(3f); // Wait for 3 seconds
 
         // Display "Prize: "
-        battleResultText.text = "Prize: 100 gold";
-        yield return new WaitForSeconds(3f); // Wait for another 3 seconds
+        /*battleResultText.text = "Prize: 100 gold";
+        yield return new WaitForSeconds(3f); // Wait for another 3 seconds*/
 
         // Load the overworld scene
         SceneController.instance.LoadOverworldScene();

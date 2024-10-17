@@ -14,15 +14,19 @@ public class ButtonController : MonoBehaviour
 
     public GameObject[] actionOptions;
     public GameObject[] inventoryOptions;
-
-    //public GameObject replayButton; // Replay Button GameObject
-    //public GameObject lostUI;
-
     public PlayerSide playerSide;
     public GameObject potionCountTextUI;
 
+    private Animator[] actionAnimators;
+
     private void Start()
     {
+        actionAnimators = new Animator[actionOptions.Length];
+
+        for (int i = 0; i < actionOptions.Length; i++)
+        {
+            actionAnimators[i] = actionOptions[i].GetComponent<Animator>();
+        }
         // Start by showing only Inventory and Action buttons, hide the rest
         inventoryButton.SetActive(true);
         actionButton.SetActive(true);
@@ -106,26 +110,19 @@ public class ButtonController : MonoBehaviour
         OnExitButtonClick();  // ปิดเมนูหลังจากใช้ไอเท็ม
     }
 
-    /*public void ShowLostUI()
+    public void TriggerActionAnimation(int actionIndex)
     {
-        if (lostUI != null)
+        if (actionIndex >= 0 && actionIndex < actionAnimators.Length)
         {
-            lostUI.SetActive(true);
-
-            if (replayButton != null)
+            if (actionAnimators[actionIndex] != null)
             {
-                replayButton.SetActive(true); // Make sure the replay button is activated
-                Debug.Log("Replay Button is now active.");
-            }
-            else
-            {
-                Debug.LogWarning("Replay Button reference is missing!");
+                actionAnimators[actionIndex].SetTrigger("PlayAnimation");
+                Debug.Log("Playing animation for action: " + actionOptions[actionIndex].name);
             }
         }
+        else
+        {
+            Debug.LogWarning("Invalid action index: " + actionIndex);
+        }
     }
-
-    public void OnReplayButtonClick()
-    {
-        SceneController.instance.ResetAndLoadMapScene();
-    }*/
 }

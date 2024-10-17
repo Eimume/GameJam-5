@@ -1,34 +1,28 @@
 fileFormatVersion: 2
-guid: aec632c11362d8f489af0e38cd1091df
+guid: c9b029b410c7f0241822c2779b8b6aac
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5011862480205781300
-    second: Main_character_idle_sideview_0
+      213: 4837350046466851280
+    second: Pumpkin speical attack_0
   - first:
-      213: -8871456607589592640
-    second: Main_character_idle_sideview_1
+      213: 6936990817419073022
+    second: Pumpkin speical attack_1
   - first:
-      213: 7251177332349808697
-    second: Main_character_idle_sideview_2
+      213: -8327183820476503365
+    second: Pumpkin speical attack_2
   - first:
-      213: 7409461004493318321
-    second: Main_character_idle_sideview_3
+      213: 168229832872084093
+    second: Pumpkin speical attack_3
   - first:
-      213: -2863698193997743153
-    second: Main_character_idle_sideview_4
+      213: 4580795912849731985
+    second: Pumpkin speical attack_4
   - first:
-      213: -259850820357174144
-    second: Main_character_idle_sideview_5
+      213: -66389607987898993
+    second: Pumpkin speical attack_5
   - first:
-      213: 5111987830397317542
-    second: Main_character_idle_sideview_6
-  - first:
-      213: -7492776178783541699
-    second: Main_character_idle_sideview_7
-  - first:
-      213: 452760066505210947
-    second: Main_character_idle_sideview_8
+      213: -7392031981287085620
+    second: Pumpkin speical attack_6
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -124,13 +118,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Main_character_idle_sideview_0
+      name: Pumpkin speical attack_0
       rect:
         serializedVersion: 2
-        x: 10
+        x: 0
         y: 0
-        width: 52
-        height: 58
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -139,20 +133,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: cc6e934d0a9427ab0800000000000000
-      internalID: -5011862480205781300
+      spriteID: 0d140e5ec38b12340800000000000000
+      internalID: 4837350046466851280
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Main_character_idle_sideview_1
+      name: Pumpkin speical attack_1
       rect:
         serializedVersion: 2
-        x: 74
+        x: 64
         y: 0
-        width: 53
-        height: 58
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -161,20 +155,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0c19458e73142e480800000000000000
-      internalID: -8871456607589592640
+      spriteID: ef5196a0564254060800000000000000
+      internalID: 6936990817419073022
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Main_character_idle_sideview_2
+      name: Pumpkin speical attack_2
       rect:
         serializedVersion: 2
-        x: 138
+        x: 128
         y: 0
-        width: 54
-        height: 58
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -183,20 +177,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 930331a8d5b51a460800000000000000
-      internalID: 7251177332349808697
+      spriteID: bba2e114f66ef6c80800000000000000
+      internalID: -8327183820476503365
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Main_character_idle_sideview_3
+      name: Pumpkin speical attack_3
       rect:
         serializedVersion: 2
-        x: 202
+        x: 192
         y: 0
-        width: 53
-        height: 59
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -205,20 +199,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1b8eeedc681b3d660800000000000000
-      internalID: 7409461004493318321
+      spriteID: d72c6f4442ca55200800000000000000
+      internalID: 168229832872084093
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Main_character_idle_sideview_4
+      name: Pumpkin speical attack_4
       rect:
         serializedVersion: 2
-        x: 266
+        x: 256
         y: 0
-        width: 53
-        height: 59
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -227,20 +221,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: fcb36d24aa91248d0800000000000000
-      internalID: -2863698193997743153
+      spriteID: 19138f5dc91429f30800000000000000
+      internalID: 4580795912849731985
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Main_character_idle_sideview_5
+      name: Pumpkin speical attack_5
       rect:
         serializedVersion: 2
-        x: 330
+        x: 320
         y: 0
-        width: 53
-        height: 59
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -249,20 +243,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 08c440e3e03d46cf0800000000000000
-      internalID: -259850820357174144
+      spriteID: f859a17d003241ff0800000000000000
+      internalID: -66389607987898993
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Main_character_idle_sideview_6
+      name: Pumpkin speical attack_6
       rect:
         serializedVersion: 2
-        x: 394
+        x: 384
         y: 0
-        width: 52
-        height: 56
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -271,52 +265,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6a1b3f6e8dd61f640800000000000000
-      internalID: 5111987830397317542
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Main_character_idle_sideview_7
-      rect:
-        serializedVersion: 2
-        x: 458
-        y: 0
-        width: 51
-        height: 58
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d36291a83cf440890800000000000000
-      internalID: -7492776178783541699
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Main_character_idle_sideview_8
-      rect:
-        serializedVersion: 2
-        x: 522
-        y: 0
-        width: 52
-        height: 58
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 34c7684b1e6884600800000000000000
-      internalID: 452760066505210947
+      spriteID: cc96e03e31a3a6990800000000000000
+      internalID: -7392031981287085620
       vertices: []
       indices: 
       edges: []
@@ -325,7 +275,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 89044747d6671154188b8c5bb1767def
     internalID: 0
     vertices: []
     indices: 
@@ -333,15 +283,13 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Main_character_idle_sideview_0: -5011862480205781300
-      Main_character_idle_sideview_1: -8871456607589592640
-      Main_character_idle_sideview_2: 7251177332349808697
-      Main_character_idle_sideview_3: 7409461004493318321
-      Main_character_idle_sideview_4: -2863698193997743153
-      Main_character_idle_sideview_5: -259850820357174144
-      Main_character_idle_sideview_6: 5111987830397317542
-      Main_character_idle_sideview_7: -7492776178783541699
-      Main_character_idle_sideview_8: 452760066505210947
+      Pumpkin speical attack_0: 4837350046466851280
+      Pumpkin speical attack_1: 6936990817419073022
+      Pumpkin speical attack_2: -8327183820476503365
+      Pumpkin speical attack_3: 168229832872084093
+      Pumpkin speical attack_4: 4580795912849731985
+      Pumpkin speical attack_5: -66389607987898993
+      Pumpkin speical attack_6: -7392031981287085620
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

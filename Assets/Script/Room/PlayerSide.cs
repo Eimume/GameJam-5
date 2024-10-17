@@ -16,18 +16,18 @@ public class PlayerSide : MonoBehaviour
     public PvPManager pvpManager;
     public ActionType selectedAction;  // The action selected by the player
 
+    private Animator playerAnimator; // Reference to the player's animator
+
     //public bool isdying = false;
 
     public void Start()
     {
-        //isdying = false;
-        //currentHp = health;
+        playerAnimator = GetComponent<Animator>();
         UpdatePlayerHPUI();  // Initial update of the Player HP UI
         UpdatePotionCountUI();
         lostUI.SetActive(false);
         replayButton.SetActive(false);
         exitButton.SetActive(false);
-        //potionUI.SetActive(false);  // ปิด UI ของ Potion เมื่อเริ่มเกม
     }
 
     // Update the player's HP in the UI
@@ -46,11 +46,12 @@ public class PlayerSide : MonoBehaviour
         
     }
 
-    private void UpdatePotionCountUI()
+    public void UpdatePotionCountUI()
     {
         if (potionCountText != null)
         {
             potionCountText.text = "Potions: " + PlayerData.instance.currentPotionCount;
+            TriggerPlayerAnimation(selectedAction);
         }
     }
 
@@ -58,6 +59,22 @@ public class PlayerSide : MonoBehaviour
     {
         selectedAction = action;
         Debug.Log("Player selected: " + selectedAction.actionName);
+    }
+    private void TriggerPlayerAnimation(ActionType action)
+    {
+        if (playerAnimator == null) return;
+
+        if (action.actionName == "Normal Attack")
+        {
+            playerAnimator.SetTrigger("NormalAttack");
+            Debug.Log("Playing Normal Attack animation.");
+        }
+        else if (action.actionName == "Special Attack")
+        {
+            playerAnimator.SetTrigger("SpecialAttack");
+            Debug.Log("Playing Special Attack animation.");
+        }
+        // Add more animations based on other actions if necessary
     }
 
     public void TakeDamage(int damage)

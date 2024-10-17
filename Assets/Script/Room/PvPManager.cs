@@ -11,7 +11,7 @@ public class PvPManager : MonoBehaviour
     public Text enemyHPText;   // Text UI สำหรับแสดง HP ของศัตรู
 
     public Text whoStartsText;  // UI Text to show who starts
-    public GameObject wheelUI;  // The UI element for the wheel that will "spin"
+    //public GameObject wheelUI;  // The UI element for the wheel that will "spin"
 
     public ActionType[] possibleAttackActions; // List of possible actions for the enemy to choose from
     public ActionType[] possibleBlockActions;   // Possible blocks (normal, special)
@@ -38,7 +38,7 @@ public class PvPManager : MonoBehaviour
     IEnumerator SpinToDecideWhoStarts()
     {
         // Activate the wheel UI
-        wheelUI.SetActive(true);
+        //wheelUI.SetActive(true);
         // Simulate the wheel spinning for 2 seconds
         float spinTime = 2f;
         float elapsedTime = 0f;
@@ -59,14 +59,14 @@ public class PvPManager : MonoBehaviour
         {
             whoStartsText.text = "Player starts!";
             yield return new WaitForSeconds(1f);
-            wheelUI.SetActive(false);  // Hide the wheel
+            //wheelUI.SetActive(false);  // Hide the wheel
             StartPlayerTurn();  // Start the player's turn
         }
         else
         {
             whoStartsText.text = "Enemy starts!";
             yield return new WaitForSeconds(1f);
-            wheelUI.SetActive(false);  // Hide the wheel
+            //wheelUI.SetActive(false);  // Hide the wheel
             StartEnemyTurn();  // Start the enemy's turn
         }
     }
