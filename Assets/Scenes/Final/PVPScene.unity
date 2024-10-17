@@ -391,6 +391,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7339728922892862604, guid: 0dcdc73d4936848408288f9417ce4760, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 85a97e7eaa512cf4eba803cea1f3f7d3, type: 2}
     - target: {fileID: 7667415746995056945, guid: 0dcdc73d4936848408288f9417ce4760, type: 3}
       propertyPath: m_Name
       value: Player side
@@ -418,6 +422,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 9143655920595844016}
     - target: {fileID: 60839429101732602, guid: a49694019b99096419a9e69bcab641ca, type: 3}
+      propertyPath: isBoss
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 60839429101732602, guid: a49694019b99096419a9e69bcab641ca, type: 3}
       propertyPath: hpSlider
       value: 
       objectReference: {fileID: 5874612531060352662}
@@ -432,6 +440,10 @@ PrefabInstance:
     - target: {fileID: 1325229245906350420, guid: a49694019b99096419a9e69bcab641ca, type: 3}
       propertyPath: m_Name
       value: Enemy Side
+      objectReference: {fileID: 0}
+    - target: {fileID: 3836992037745466103, guid: a49694019b99096419a9e69bcab641ca, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5387493552895754261, guid: a49694019b99096419a9e69bcab641ca, type: 3}
       propertyPath: m_LocalScale.x

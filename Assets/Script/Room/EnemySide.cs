@@ -16,6 +16,9 @@ public class EnemySide : MonoBehaviour
     public GameObject WinUI;
     public Text battleResultText; // Reference to the text for displaying battle results
 
+    public bool isBoss = false; // Flag to identify if this enemy is a boss
+
+
     public void Start()
     {
         currentHp = health;
@@ -59,21 +62,37 @@ public class EnemySide : MonoBehaviour
 
         if (currentHp <= 0)
         {
-            StartCoroutine(HandleEnemyDefeat());
+            if (isBoss)
+            {
+                StartCoroutine(HandleBossDefeat());
+            }
+            else
+            {
+                StartCoroutine(HandleNormalEnemyDefeat());
+            }
         }
     }
 
-    private IEnumerator HandleEnemyDefeat()
+    private IEnumerator HandleNormalEnemyDefeat()
     {
         WinUI.SetActive(true);
-        // Display "Player won!!"
         battleResultText.gameObject.SetActive(true);
-        battleResultText.text = "You won!!";
-        yield return new WaitForSeconds(3f); // Wait for 3 seconds
+        battleResultText.text = "Enemy defeated!";
+        yield return new WaitForSeconds(3f);
 
-        // Display "Prize: "
-        /*battleResultText.text = "Prize: 100 gold";
-        yield return new WaitForSeconds(3f); // Wait for another 3 seconds*/
+        // Load the overworld scene
+        SceneController.instance.LoadOverworldScene();
+    }
+
+    private IEnumerator HandleBossDefeat()
+    {
+        WinUI.SetActive(true);
+        battleResultText.gameObject.SetActive(true);
+        battleResultText.text = "You defeated the boss!";
+        yield return new WaitForSeconds(3f);
+
+        // Mark the boss battle as won before loading the map scene
+        PlayerData.instance.MarkBossBattleAsWon();
 
         // Load the overworld scene
         SceneController.instance.LoadOverworldScene();

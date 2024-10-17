@@ -83,6 +83,7 @@ public class SceneController : MonoBehaviour
 
     private IEnumerator RestorePlayerStateAfterSceneLoad()
     {
+        yield return new WaitUntil(() => SceneManager.GetActiveScene().name == "map");
         // Wait for the scene to load completely
         yield return new WaitForEndOfFrame();
 
