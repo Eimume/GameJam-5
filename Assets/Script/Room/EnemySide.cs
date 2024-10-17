@@ -15,6 +15,7 @@ public class EnemySide : MonoBehaviour
     //public GameObject battleResultPanel;
     public GameObject WinUI;
     public Text battleResultText; // Reference to the text for displaying battle results
+    public GameObject exitButton;
 
     public bool isBoss = false; // Flag to identify if this enemy is a boss
 
@@ -24,7 +25,13 @@ public class EnemySide : MonoBehaviour
         currentHp = health;
         UpdateEnemyHPUI();  // Initial update of the Enemy HP UI
         WinUI.SetActive(false);
+        exitButton.SetActive(false);
         battleResultText.gameObject.SetActive(false); // Initially hide the result text
+
+        /*if (exitButton != null)
+        {
+            exitButton.onClick.AddListener(OnExitButtonClick); // Add listener for the exit button
+        }*/
     }
 
     // Update the enemy's HP in the UI
@@ -89,12 +96,16 @@ public class EnemySide : MonoBehaviour
         WinUI.SetActive(true);
         battleResultText.gameObject.SetActive(true);
         battleResultText.text = "You defeated the boss!";
-        yield return new WaitForSeconds(3f);
-
+        exitButton.SetActive(true);
+        yield return null;
         // Mark the boss battle as won before loading the map scene
-        PlayerData.instance.MarkBossBattleAsWon();
+        /*PlayerData.instance.MarkBossBattleAsWon();
 
         // Load the overworld scene
-        SceneController.instance.LoadOverworldScene();
+        SceneController.instance.LoadOverworldScene();*/
+    }
+    public void OnExitButtonClick()
+    {
+        SceneController.instance.OnExitButtonClick();
     }
 }
