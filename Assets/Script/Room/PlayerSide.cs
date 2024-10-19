@@ -140,7 +140,7 @@ public class PlayerSide : MonoBehaviour
         // Reset the player state in PlayerData
         PlayerData.instance.ResetPlayerState();
         // Load the "Map" scene
-        SceneManager.LoadScene("Map");
+        SceneManager.LoadScene("map");
     }
 
     public void OnExitButtonClick()

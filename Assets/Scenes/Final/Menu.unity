@@ -477,7 +477,12 @@ MonoBehaviour:
     Warit Phetkaeo - Directer,
     sound
 
-    Ratchapon Rodrangnok - Artist, Animator'
+    Ratchapon Rodrangnok - Artist, Animator
+
+    Leeyong Rujinda - Programmer,
+    Graphic designer
+
+    Nuttasut Sungtong - Graphic designer, level design'
 --- !u!222 &419529684
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -978,7 +983,7 @@ GameObject:
   - component: {fileID: 1330516778}
   - component: {fileID: 1330516777}
   m_Layer: 5
-  m_Name: Credit
+  m_Name: Credit button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
